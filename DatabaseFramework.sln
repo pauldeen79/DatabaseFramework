@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseFramework.CodeGeneration", "..\src\DatabaseFramework.CodeGeneration\DatabaseFramework.CodeGeneration.csproj", "{E9AD79D2-9576-444D-A15E-3A3E3D1DDEEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseFramework.CodeGeneration", "src\DatabaseFramework.CodeGeneration\DatabaseFramework.CodeGeneration.csproj", "{E9AD79D2-9576-444D-A15E-3A3E3D1DDEEF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseFramework.Domain", "..\src\DatabaseFramework.Domain\DatabaseFramework.Domain.csproj", "{FC712A71-7B19-458E-A30F-77AA607B3933}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseFramework.Domain", "src\DatabaseFramework.Domain\DatabaseFramework.Domain.csproj", "{FC712A71-7B19-458E-A30F-77AA607B3933}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseFramework.Domain.Tests", "..\src\DatabaseFramework.Domain.Tests\DatabaseFramework.Domain.Tests.csproj", "{4C261DE7-21AF-4D93-BF70-810D3C3B3559}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseFramework.Domain.Tests", "src\DatabaseFramework.Domain.Tests\DatabaseFramework.Domain.Tests.csproj", "{4C261DE7-21AF-4D93-BF70-810D3C3B3559}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseFramework.TemplateFramework", "..\src\DatabaseFramework.TemplateFramework\DatabaseFramework.TemplateFramework.csproj", "{9A88E1FF-C3CD-4A24-A87D-C600EC843164}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseFramework.TemplateFramework", "src\DatabaseFramework.TemplateFramework\DatabaseFramework.TemplateFramework.csproj", "{9A88E1FF-C3CD-4A24-A87D-C600EC843164}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseFramework.TemplateFramework.Tests", "..\src\DatabaseFramework.TemplateFramework.Tests\DatabaseFramework.TemplateFramework.Tests.csproj", "{B600A58C-869C-4078-A83C-6C641C99730A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseFramework.TemplateFramework.Tests", "src\DatabaseFramework.TemplateFramework.Tests\DatabaseFramework.TemplateFramework.Tests.csproj", "{B600A58C-869C-4078-A83C-6C641C99730A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
