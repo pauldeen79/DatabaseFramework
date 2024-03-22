@@ -2,6 +2,6 @@
 
 internal interface IStoredProcedure : IDatabaseObject
 {
-    [Required] IReadOnlyCollection<ISqlStatementBase> Statements { get; }
-    [Required] IReadOnlyCollection<IStoredProcedureParameter> Parameters { get; }
+    [Required][ValidateObject] IReadOnlyCollection<ISqlStatementBase> Statements { get; }
+    [Required][ValidateObject] IReadOnlyCollection<IStoredProcedureParameter> Parameters { get; }
 }

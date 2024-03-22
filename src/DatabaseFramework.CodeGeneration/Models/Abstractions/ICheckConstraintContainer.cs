@@ -2,5 +2,5 @@
 
 internal interface ICheckConstraintContainer
 {
-    [Required] IReadOnlyCollection<ICheckConstraint> CheckConstraints { get; }
+    [Required][ValidateObject] IReadOnlyCollection<ICheckConstraint> CheckConstraints { get; }
 }

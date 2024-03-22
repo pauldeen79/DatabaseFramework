@@ -2,6 +2,6 @@
 
 internal interface IIndex : INameContainer, IFileGroupNameContainer
 {
-    [Required][MinCount(1)] IReadOnlyCollection<IIndexField> Fields { get; }
+    [Required][MinCount(1)][ValidateObject] IReadOnlyCollection<IIndexField> Fields { get; }
     bool Unique { get; }
 }
