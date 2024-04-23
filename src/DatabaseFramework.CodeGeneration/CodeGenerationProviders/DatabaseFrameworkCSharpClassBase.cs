@@ -21,6 +21,6 @@ public abstract class DatabaseFrameworkCSharpClassBase : CsharpClassGeneratorPip
     protected override bool CopyInterfaces => true;
     protected override bool CreateRecord => true;
 
-    protected TypeBase[] GetTemplateFrameworkModels()
-        => GetNonCoreModels($"{CodeGenerationRootNamespace}.Models.TemplateFramework");
+    protected async Task<TypeBase[]> GetTemplateFrameworkModels()
+        => await GetNonCoreModels($"{CodeGenerationRootNamespace}.Models.TemplateFramework");
 }

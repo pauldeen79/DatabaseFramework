@@ -7,18 +7,18 @@ public abstract class DatabaseSchemaGeneratorCodeGenerationProviderBase : ICodeG
     public abstract string LastGeneratedFilesFilename { get; }
     public abstract Encoding Encoding { get; }
 
-    public object? CreateAdditionalParameters() => null;
+    public Task<object?> CreateAdditionalParameters() => Task.FromResult(default(object?));
 
     public Type GetGeneratorType() => typeof(DatabaseSchemaGenerator);
 
     public abstract IEnumerable<IDatabaseObject> Model { get; }
     public abstract DatabaseSchemaGeneratorSettings Settings { get; }
 
-    public object? CreateModel()
-        => new DatabaseSchemaGeneratorViewModel
+    public Task<object?> CreateModel()
+        => Task.FromResult<object?>(new DatabaseSchemaGeneratorViewModel
         {
             Model = Model,
             Settings = Settings
             //Context is filled in base class, on the property setter of Context (propagated to Model)
-        };
+        });
 }

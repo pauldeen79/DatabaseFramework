@@ -11,8 +11,8 @@ public class OverrideSqlStatementBuilders : DatabaseFrameworkCSharpClassBase
 
     protected override bool EnableEntityInheritance => true;
     protected override bool CreateAsObservable => true;
-    protected override Class? BaseClass => CreateBaseclass(typeof(ISqlStatementBase), "DatabaseFramework.Domain");
+    protected override async Task<Class?> GetBaseClass() => await CreateBaseClass(typeof(ISqlStatementBase), "DatabaseFramework.Domain");
 
-    public override IEnumerable<TypeBase> Model
-        => GetBuilders(GetOverrideModels(typeof(ISqlStatementBase)), "DatabaseFramework.Domain.Builders.SqlStatements", "DatabaseFramework.Domain.SqlStatements");
+    public override async Task<IEnumerable<TypeBase>> GetModel()
+        => await GetBuilders(await GetOverrideModels(typeof(ISqlStatementBase)), "DatabaseFramework.Domain.Builders.SqlStatements", "DatabaseFramework.Domain.SqlStatements");
 }

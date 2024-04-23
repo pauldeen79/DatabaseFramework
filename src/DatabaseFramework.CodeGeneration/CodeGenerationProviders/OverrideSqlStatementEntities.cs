@@ -10,8 +10,8 @@ public class OverrideSqlStatementEntities : DatabaseFrameworkCSharpClassBase
     public override string Path => "DatabaseFramework.Domain/SqlStatements";
 
     protected override bool EnableEntityInheritance => true;
-    protected override Class? BaseClass => CreateBaseclass(typeof(ISqlStatementBase), "DatabaseFramework.Domain");
+    protected override async Task<Class?> GetBaseClass() => await CreateBaseClass(typeof(ISqlStatementBase), "DatabaseFramework.Domain");
 
-    public override IEnumerable<TypeBase> Model
-        => GetEntities(GetOverrideModels(typeof(ISqlStatementBase)), "DatabaseFramework.Domain.SqlStatements");
+    public override async Task<IEnumerable<TypeBase>> GetModel()
+        => await GetEntities(await GetOverrideModels(typeof(ISqlStatementBase)), "DatabaseFramework.Domain.SqlStatements");
 }

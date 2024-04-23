@@ -7,7 +7,7 @@ public class TemplateFrameworkBuilders : DatabaseFrameworkCSharpClassBase
     {
     }
 
-    public override IEnumerable<TypeBase> Model => GetBuilders(GetTemplateFrameworkModels(), "DatabaseFramework.TemplateFramework.Builders", "DatabaseFramework.TemplateFramework");
+    public override async Task<IEnumerable<TypeBase>> GetModel() => await GetBuilders(await GetTemplateFrameworkModels(), "DatabaseFramework.TemplateFramework.Builders", "DatabaseFramework.TemplateFramework");
 
     public override string Path => "DatabaseFramework.TemplateFramework/Builders";
 

@@ -7,7 +7,7 @@ public class AbstractNonGenericBuilders : DatabaseFrameworkCSharpClassBase
     {
     }
 
-    public override IEnumerable<TypeBase> Model => GetNonGenericBuilders(GetAbstractModels(), "DatabaseFramework.Domain.Builders", "DatabaseFramework.Domain");
+    public override async Task<IEnumerable<TypeBase>> GetModel() => await GetNonGenericBuilders(await GetAbstractModels(), "DatabaseFramework.Domain.Builders", "DatabaseFramework.Domain");
 
     public override string Path => "DatabaseFramework.Domain/Builders";
 

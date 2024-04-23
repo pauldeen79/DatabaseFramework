@@ -7,7 +7,7 @@ public class AbstractBuilders : DatabaseFrameworkCSharpClassBase
     {
     }
 
-    public override IEnumerable<TypeBase> Model => GetBuilders(GetAbstractModels(), "DatabaseFramework.Domain.Builders", "DatabaseFramework.Domain");
+    public override async Task<IEnumerable<TypeBase>> GetModel() => await GetBuilders(await GetAbstractModels(), "DatabaseFramework.Domain.Builders", "DatabaseFramework.Domain");
 
     public override string Path => "DatabaseFramework.Domain/Builders";
 

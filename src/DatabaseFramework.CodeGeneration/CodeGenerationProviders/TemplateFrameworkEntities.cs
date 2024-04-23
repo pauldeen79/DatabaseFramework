@@ -7,7 +7,7 @@ public class TemplateFrameworkEntities : DatabaseFrameworkCSharpClassBase
     {
     }
 
-    public override IEnumerable<TypeBase> Model => GetEntities(GetTemplateFrameworkModels(), "DatabaseFramework.TemplateFramework");
+    public override async Task<IEnumerable<TypeBase>> GetModel() => await GetEntities(await GetTemplateFrameworkModels(), "DatabaseFramework.TemplateFramework");
 
     public override string Path => "DatabaseFramework.TemplateFramework";
 }
