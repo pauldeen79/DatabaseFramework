@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="pauldeen79.CrossCutting.ProcessingPipeline" Version="7.0.0" />
-    <PackageReference Include="pauldeen79.CrossCutting.Utilities.Parsers" Version="5.0.0" />
+    <PackageReference Include="pauldeen79.CrossCutting.ProcessingPipeline" Version="8.1.0" />
+    <PackageReference Include="pauldeen79.CrossCutting.Utilities.Parsers" Version="5.1.0" />
     <PackageReference Include="pauldeen79.TemplateFramework.Core" Version="0.10.0" />
     <PackageReference Include="pauldeen79.TemplateFramework.TemplateProviders.ChildTemplateProvider" Version="0.10.0" />
   </ItemGroup>
