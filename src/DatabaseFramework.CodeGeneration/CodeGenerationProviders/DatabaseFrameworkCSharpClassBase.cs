@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public abstract class DatabaseFrameworkCSharpClassBase : CsharpClassGeneratorPipelineCodeGenerationProviderBase
 {
-    protected DatabaseFrameworkCSharpClassBase(IMediator mediator, ICsharpExpressionDumper csharpExpressionDumper) : base(mediator, csharpExpressionDumper)
+    protected DatabaseFrameworkCSharpClassBase(IPipelineService pipelineService) : base(pipelineService)
     {
     }
 
@@ -20,6 +20,7 @@ public abstract class DatabaseFrameworkCSharpClassBase : CsharpClassGeneratorPip
     protected override bool CopyAttributes => true;
     protected override bool CopyInterfaces => true;
     protected override bool CreateRecord => true;
+    protected override bool GenerateMultipleFiles => false;
 
     protected async Task<TypeBase[]> GetTemplateFrameworkModels()
         => await GetNonCoreModels($"{CodeGenerationRootNamespace}.Models.TemplateFramework");

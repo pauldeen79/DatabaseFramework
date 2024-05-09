@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public class TemplateFrameworkBuilders : DatabaseFrameworkCSharpClassBase
 {
-    public TemplateFrameworkBuilders(IMediator mediator, ICsharpExpressionDumper csharpExpressionDumper) : base(mediator, csharpExpressionDumper)
+    public TemplateFrameworkBuilders(IPipelineService pipelineService) : base(pipelineService)
     {
     }
 

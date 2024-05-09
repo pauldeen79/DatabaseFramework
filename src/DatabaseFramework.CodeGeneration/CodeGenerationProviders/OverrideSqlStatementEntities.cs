@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public class OverrideSqlStatementEntities : DatabaseFrameworkCSharpClassBase
 {
-    public OverrideSqlStatementEntities(IMediator mediator, ICsharpExpressionDumper csharpExpressionDumper) : base(mediator, csharpExpressionDumper)
+    public OverrideSqlStatementEntities(IPipelineService pipelineService) : base(pipelineService)
     {
     }
 

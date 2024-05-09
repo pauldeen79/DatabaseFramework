@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public class OverrideSqlStatementBuilders : DatabaseFrameworkCSharpClassBase
 {
-    public OverrideSqlStatementBuilders(IMediator mediator, ICsharpExpressionDumper csharpExpressionDumper) : base(mediator, csharpExpressionDumper)
+    public OverrideSqlStatementBuilders(IPipelineService pipelineService) : base(pipelineService)
     {
     }
 

@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public class CoreBuilders : DatabaseFrameworkCSharpClassBase
 {
-    public CoreBuilders(IMediator mediator, ICsharpExpressionDumper csharpExpressionDumper) : base(mediator, csharpExpressionDumper)
+    public CoreBuilders(IPipelineService pipelineService) : base(pipelineService)
     {
     }
 

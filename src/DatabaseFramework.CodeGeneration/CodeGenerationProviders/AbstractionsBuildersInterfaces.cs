@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public class AbstractionsBuildersInterfaces : DatabaseFrameworkCSharpClassBase
 {
-    public AbstractionsBuildersInterfaces(IMediator mediator, ICsharpExpressionDumper csharpExpressionDumper) : base(mediator, csharpExpressionDumper)
+    public AbstractionsBuildersInterfaces(IPipelineService pipelineService) : base(pipelineService)
     {
     }
 
