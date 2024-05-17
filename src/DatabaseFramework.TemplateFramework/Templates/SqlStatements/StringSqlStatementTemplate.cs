@@ -2,11 +2,13 @@
 
 public class StringSqlStatementTemplate : DatabaseSchemaGeneratorBase<StringSqlStatementViewModel>, IStringBuilderTemplate
 {
-    public void Render(StringBuilder builder)
+    public Task Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
         builder.AppendLine($"    {Model.Statement}");
+
+        return Task.CompletedTask;
     }
 }

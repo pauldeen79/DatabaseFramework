@@ -2,12 +2,12 @@
 
 public class StoredProcedureTemplate : DatabaseObjectTemplateBase<StoredProcedureViewModel>
 {
-    protected override void RenderDatabaseObject(StringBuilder builder)
+    protected override async Task RenderDatabaseObject(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
-        RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder);
+        await RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder, cancellationToken).ConfigureAwait(false);
 
         builder.AppendLine(@$"SET ANSI_NULLS ON
 GO
@@ -15,12 +15,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [{Model.Schema}].[{Model.Name}]");
 
-        RenderChildTemplatesByModel(Model.Parameters, builder);
+        await RenderChildTemplatesByModel(Model.Parameters, builder, cancellationToken).ConfigureAwait(false);
 
         builder.AppendLine(@"AS
 BEGIN");
         
-        RenderChildTemplatesByModel(Model.Statements, builder);
+        await RenderChildTemplatesByModel(Model.Statements, builder, cancellationToken).ConfigureAwait(false);
 
         builder.AppendLine(@"END
 GO");

@@ -2,7 +2,7 @@
 
 public class CheckConstraintTemplate : DatabaseSchemaGeneratorBase<CheckConstraintViewModel>, IStringBuilderTemplate
 {
-    public void Render(StringBuilder builder)
+    public Task Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -18,5 +18,7 @@ public class CheckConstraintTemplate : DatabaseSchemaGeneratorBase<CheckConstrai
         {
             builder.AppendLine();
         }
+
+        return Task.CompletedTask;
     }
 }

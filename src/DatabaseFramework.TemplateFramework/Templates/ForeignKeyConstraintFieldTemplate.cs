@@ -2,7 +2,7 @@
 
 public class ForeignKeyConstraintFieldTemplate : DatabaseSchemaGeneratorBase<ForeignKeyConstraintFieldViewModel>, IStringBuilderTemplate
 {
-    public void Render(StringBuilder builder)
+    public Task Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -13,5 +13,7 @@ public class ForeignKeyConstraintFieldTemplate : DatabaseSchemaGeneratorBase<For
         {
             builder.Append(",");
         }
+
+        return Task.CompletedTask;
     }
 }

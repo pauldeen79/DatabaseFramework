@@ -2,12 +2,12 @@
 
 public sealed class TableTemplate : DatabaseObjectTemplateBase<TableViewModel>
 {
-    protected override void RenderDatabaseObject(StringBuilder builder)
+    protected override async Task RenderDatabaseObject(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
-        RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder);
+        await RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder, cancellationToken).ConfigureAwait(false);
         builder.AppendLine(@$"SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -21,14 +21,14 @@ CREATE TABLE [{Model.Schema}].[{Model.Name}](");
             .Concat(Model.UniqueConstraints.Cast<object>())
             .Concat(Model.CheckConstraints.Cast<object>());
 
-        RenderChildTemplatesByModel(fieldsAndPrimaryKeyConstraints, builder);
+        await RenderChildTemplatesByModel(fieldsAndPrimaryKeyConstraints, builder, cancellationToken).ConfigureAwait(false);
 
         builder.AppendLine(@$") ON [{Model.FileGroupName}]
 GO
 SET ANSI_PADDING OFF
 GO");
 
-        RenderChildTemplatesByModel(Model.Indexes, builder);
-        RenderChildTemplatesByModel(Model.DefaultValueConstraints, builder);
+        await RenderChildTemplatesByModel(Model.Indexes, builder, cancellationToken).ConfigureAwait(false);
+        await RenderChildTemplatesByModel(Model.DefaultValueConstraints, builder, cancellationToken).ConfigureAwait(false);
     }
 }

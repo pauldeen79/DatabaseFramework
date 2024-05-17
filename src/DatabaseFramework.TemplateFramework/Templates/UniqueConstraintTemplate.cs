@@ -2,7 +2,7 @@
 
 public class UniqueConstraintTemplate : DatabaseSchemaGeneratorBase<UniqueConstraintViewModel>, IStringBuilderTemplate
 {
-    public void Render(StringBuilder builder)
+    public async Task Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -10,7 +10,7 @@ public class UniqueConstraintTemplate : DatabaseSchemaGeneratorBase<UniqueConstr
         builder.AppendLine(@$" CONSTRAINT [{Model.Name}] UNIQUE NONCLUSTERED
 (");
 
-        RenderChildTemplatesByModel(Model.Fields, builder);
+        await RenderChildTemplatesByModel(Model.Fields, builder, cancellationToken).ConfigureAwait(false);
 
         builder.AppendLine($") ON [{Model.FileGroupName}]");
     }

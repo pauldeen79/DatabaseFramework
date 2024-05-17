@@ -2,21 +2,21 @@
 
 public class ForeignKeyConstraintTemplate : DatabaseSchemaGeneratorBase<ForeignKeyConstraintViewModel>, IStringBuilderTemplate
 {
-    public void Render(StringBuilder builder)
+    public async Task Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
-        RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder);
+        await RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder, cancellationToken).ConfigureAwait(false);
 
         builder.Append($"ALTER TABLE [{Model.Schema}].[{Model.TableEntityName}]  WITH CHECK ADD  CONSTRAINT [{Model.Name}] FOREIGN KEY(");
 
-        RenderChildTemplatesByModel(Model.LocalFields, builder);
+        await RenderChildTemplatesByModel(Model.LocalFields, builder, cancellationToken).ConfigureAwait(false);
 
         builder.AppendLine(")");
         builder.Append($"REFERENCES [{Model.Schema}].[{Model.ForeignTableName}] (");
 
-        RenderChildTemplatesByModel(Model.ForeignFields, builder);
+        await RenderChildTemplatesByModel(Model.ForeignFields, builder, cancellationToken).ConfigureAwait(false);
 
         builder.AppendLine(")");
         builder.AppendLine($"ON UPDATE {Model.CascadeUpdate}");
