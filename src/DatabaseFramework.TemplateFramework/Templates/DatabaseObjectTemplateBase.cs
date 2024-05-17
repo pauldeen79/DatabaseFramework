@@ -3,7 +3,7 @@
 public abstract class DatabaseObjectTemplateBase<T> : DatabaseSchemaGeneratorBase<T>, IMultipleContentBuilderTemplate, IStringBuilderTemplate
     where T : DatabaseSchemaGeneratorViewModelBase, INameContainer
 {
-    public void Render(IMultipleContentBuilder builder)
+    public async Task Render(IMultipleContentBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -27,16 +27,16 @@ public abstract class DatabaseObjectTemplateBase<T> : DatabaseSchemaGeneratorBas
             generationEnvironment = new StringBuilderEnvironment(contentBuilder.Builder);
         }
 
-        RenderDatabaseObject(generationEnvironment.Builder);
+        await RenderDatabaseObject(generationEnvironment.Builder, cancellationToken);
     }
 
-    public void Render(StringBuilder builder)
+    public async Task Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
-        RenderDatabaseObject(builder);
+        await RenderDatabaseObject(builder, cancellationToken);
     }
 
-    protected abstract void RenderDatabaseObject(StringBuilder builder);
+    protected abstract Task RenderDatabaseObject(StringBuilder builder, CancellationToken cancellationToken);
 }

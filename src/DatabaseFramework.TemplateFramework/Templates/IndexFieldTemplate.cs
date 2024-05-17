@@ -2,7 +2,7 @@
 
 public class IndexFieldTemplate : DatabaseSchemaGeneratorBase<IndexFieldViewModel>, IStringBuilderTemplate
 {
-    public void Render(StringBuilder builder)
+    public Task Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -15,5 +15,7 @@ public class IndexFieldTemplate : DatabaseSchemaGeneratorBase<IndexFieldViewMode
         }
 
         builder.AppendLine();
+
+        return Task.CompletedTask;
     }
 }

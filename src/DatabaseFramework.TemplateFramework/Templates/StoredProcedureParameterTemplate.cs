@@ -2,14 +2,14 @@
 
 public class StoredProcedureParameterTemplate : DatabaseSchemaGeneratorBase<StoredProcedureParameterViewModel>, IStringBuilderTemplate
 {
-    public void Render(StringBuilder builder)
+    public async Task Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
         builder.Append($"\t@{Model.Name} ");
 
-        RenderChildTemplateByModel(Model.NonViewField, builder);
+        await RenderChildTemplateByModel(Model.NonViewField, builder, cancellationToken).ConfigureAwait(false);
 
         if (Model.HasDefaultValue)
         {

@@ -2,12 +2,12 @@
 
 public class ViewTemplate : DatabaseObjectTemplateBase<ViewViewModel>
 {
-    protected override void RenderDatabaseObject(StringBuilder builder)
+    protected override async Task RenderDatabaseObject(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
-        RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder);
+        await RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder, cancellationToken).ConfigureAwait(false);
 
         builder.AppendLine(@$"SET ANSI_NULLS ON
 GO

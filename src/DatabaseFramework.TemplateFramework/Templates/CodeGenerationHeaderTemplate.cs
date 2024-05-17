@@ -2,14 +2,14 @@
 
 public sealed class CodeGenerationHeaderTemplate : DatabaseSchemaGeneratorBase<CodeGenerationHeaderViewModel>, IStringBuilderTemplate
 {
-    public void Render(StringBuilder builder)
+    public Task Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
         if (!Model.CreateCodeGenerationHeader)
         {
-            return;
+            return Task.CompletedTask;
         }
 
         if (Model.Schema is not null)
@@ -20,5 +20,7 @@ public sealed class CodeGenerationHeaderTemplate : DatabaseSchemaGeneratorBase<C
         {
             builder.AppendLine($"/****** Object:  {Model.ObjectType} [{Model.Name}] ******/");
         }
+
+        return Task.CompletedTask;
     }
 }

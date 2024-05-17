@@ -2,7 +2,7 @@
 
 public class UniqueConstraintFieldTemplate : DatabaseSchemaGeneratorBase<UniqueConstraintFieldViewModel>, IStringBuilderTemplate
 {
-    public void Render(StringBuilder builder)
+    public Task Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -15,5 +15,7 @@ public class UniqueConstraintFieldTemplate : DatabaseSchemaGeneratorBase<UniqueC
         }
 
         builder.AppendLine();
+
+        return Task.CompletedTask;
     }
 }

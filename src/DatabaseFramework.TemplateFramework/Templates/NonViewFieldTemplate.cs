@@ -2,7 +2,7 @@
 
 public class NonViewFieldTemplate : DatabaseSchemaGeneratorBase<NonViewFieldViewModel>, IStringBuilderTemplate
 {
-    public void Render(StringBuilder builder)
+    public Task Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -33,5 +33,7 @@ public class NonViewFieldTemplate : DatabaseSchemaGeneratorBase<NonViewFieldView
         {
             builder.Append($"({Model.NumericPrecision},{Model.NumericScale})");
         }
+
+        return Task.CompletedTask;
     }
 }

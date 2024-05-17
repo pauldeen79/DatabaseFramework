@@ -2,7 +2,7 @@
 
 public class PrimaryKeyConstraintFieldTemplate : DatabaseSchemaGeneratorBase<PrimaryKeyConstraintFieldViewModel>, IStringBuilderTemplate
 {
-    public void Render(StringBuilder builder)
+    public Task Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -15,5 +15,7 @@ public class PrimaryKeyConstraintFieldTemplate : DatabaseSchemaGeneratorBase<Pri
         }
 
         builder.AppendLine();
+
+        return Task.CompletedTask;
     }
 }

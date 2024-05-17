@@ -2,14 +2,14 @@
 
 public class TableFieldTemplate : DatabaseSchemaGeneratorBase<TableFieldViewModel>, IStringBuilderTemplate
 {
-    public void Render(StringBuilder builder)
+    public async Task Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
         builder.Append($"\t[{Model.Name}] ");
         
-        RenderChildTemplateByModel(Model.NonViewField, builder);
+        await RenderChildTemplateByModel(Model.NonViewField, builder, cancellationToken).ConfigureAwait(false);
         
         builder.Append($"{Model.Identity} {Model.NullOrNotNull}");
 
@@ -18,7 +18,7 @@ public class TableFieldTemplate : DatabaseSchemaGeneratorBase<TableFieldViewMode
             builder.AppendLine();
         }
 
-        RenderChildTemplatesByModel(Model.CheckConstraints, builder);
+        await RenderChildTemplatesByModel(Model.CheckConstraints, builder, cancellationToken).ConfigureAwait(false);
 
         if (!Model.IsLastTableField)
         {

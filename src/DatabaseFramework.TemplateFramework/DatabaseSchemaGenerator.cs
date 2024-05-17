@@ -2,7 +2,7 @@
 
 public sealed class DatabaseSchemaGenerator : DatabaseSchemaGeneratorBase<DatabaseSchemaGeneratorViewModel>, IMultipleContentBuilderTemplate, IStringBuilderTemplate
 {
-    public void Render(IMultipleContentBuilder builder)
+    public async Task Render(IMultipleContentBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -17,10 +17,10 @@ public sealed class DatabaseSchemaGenerator : DatabaseSchemaGeneratorBase<Databa
             generationEnvironment = new StringBuilderEnvironment(singleStringBuilder);
         }
 
-        RenderSchemaHierarchy(generationEnvironment);
+        await RenderSchemaHierarchy(generationEnvironment, cancellationToken).ConfigureAwait(false);
     }
 
-    public void Render(StringBuilder builder)
+    public async Task Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -30,13 +30,13 @@ public sealed class DatabaseSchemaGenerator : DatabaseSchemaGeneratorBase<Databa
             throw new NotSupportedException("Can't generate multiple files, because the generation environment has a single StringBuilder instance");
         }
 
-        RenderSchemaHierarchy(new StringBuilderEnvironment(builder));
+        await RenderSchemaHierarchy(new StringBuilderEnvironment(builder), cancellationToken).ConfigureAwait(false);
     }
 
-    private void RenderSchemaHierarchy(IGenerationEnvironment generationEnvironment)
+    private async Task RenderSchemaHierarchy(IGenerationEnvironment generationEnvironment, CancellationToken cancellationToken)
     {
         foreach (var schema in Model!.Schemas)
         {
-            RenderChildTemplatesByModel(Model.GetDatabaseObjects(schema), generationEnvironment);
+            await RenderChildTemplatesByModel(Model.GetDatabaseObjects(schema), generationEnvironment, cancellationToken);
         }
     }}
