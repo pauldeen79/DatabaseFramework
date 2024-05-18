@@ -48,7 +48,7 @@ public sealed class IntegrationTests : TestBase, IDisposable
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings, CancellationToken.None);
+        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
@@ -76,7 +76,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TablesCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings, CancellationToken.None);
+        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
@@ -130,7 +130,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithVarcharAndNumericFieldsCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings, CancellationToken.None);
+        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
@@ -159,7 +159,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithCheckConstraintsOnFieldLevelCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings, CancellationToken.None);
+        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
@@ -190,7 +190,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithCheckConstraintsOnTableLevelCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings, CancellationToken.None);
+        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
@@ -222,7 +222,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithIndexesCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings, CancellationToken.None);
+        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
@@ -261,7 +261,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithPrimaryKeyConstraintCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings, CancellationToken.None);
+        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
@@ -294,7 +294,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithUniqueConstraintCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings, CancellationToken.None);
+        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
@@ -328,7 +328,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithDefaultValueConstraintCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings, CancellationToken.None);
+        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
@@ -359,7 +359,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<StoredProcedureContainingStatementsCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings, CancellationToken.None);
+        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
@@ -387,7 +387,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithForeignKeyConstraintCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings, CancellationToken.None);
+        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
@@ -423,7 +423,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithCascadeForeignKeyConstraintCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings, CancellationToken.None);
+        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
@@ -461,7 +461,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithIdentityFieldCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings, CancellationToken.None);
+        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
@@ -490,7 +490,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<ViewCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings, CancellationToken.None);
+        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
@@ -538,7 +538,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<MultipleFilesCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings, CancellationToken.None);
+        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         GenerationEnvironment.Builder.Contents.Should().HaveCount(3);
