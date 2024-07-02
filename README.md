@@ -10,4 +10,4 @@ new TableBuilder()
     .Build()
 ```
 
-You can then use the templates or code generation providers to convert this into DDL files. (either one file per object, or one file with all objects.
+You can then use the templates or code generation providers to convert this into DDL files. (either one file per object, or one file with all objects)
