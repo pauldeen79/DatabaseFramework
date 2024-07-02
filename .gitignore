@@ -362,5 +362,3 @@ MigrationBackup/
 
 # Built Visual Studio Code Extensions
 *.vsix
-
-*.template.generated.cs

@@ -31,10 +31,6 @@ jobs:
           dotnet-version: 8.0.x
       - name: Restore
         run: dotnet restore DatabaseFramework.sln
-      - name: Build code generation
-        run: dotnet build src/DatabaseFramework.CodeGeneration/DatabaseFramework.CodeGeneration.csproj -c Release
-      - name: Run code generation
-        run: dotnet src/DatabaseFramework.CodeGeneration/bin/Release/net8.0/DatabaseFramework.CodeGeneration.dll
       - name: Build
         run: dotnet build DatabaseFramework.sln -c Release --no-restore
       - name: Test
@@ -87,8 +83,6 @@ jobs:
           echo Version: $VERSION
           VERSION="${VERSION//v}"
           echo Clean Version: $VERSION
-          dotnet build src/DatabaseFramework.CodeGeneration/DatabaseFramework.CodeGeneration.csproj -c Release
-          dotnet src/DatabaseFramework.CodeGeneration/bin/Release/net8.0/DatabaseFramework.CodeGeneration.dll
           dotnet pack DatabaseFramework.sln -v normal -c Release --include-symbols --include-source -p:PackageVersion=$VERSION -p:Version=$VERSION -o nupkg
       - name: Push to GitHub Feed
         run: |
