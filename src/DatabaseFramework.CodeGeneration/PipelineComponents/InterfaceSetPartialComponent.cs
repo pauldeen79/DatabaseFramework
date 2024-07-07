@@ -1,11 +1,13 @@
 ﻿namespace DatabaseFramework.CodeGeneration.PipelineComponents;
 
+[ExcludeFromCodeCoverage]
 public class DatabaseObjectInterfaceComponentBuilder : IInterfaceComponentBuilder
 {
     public IPipelineComponent<InterfaceContext> Build()
         => new InterfaceSetPartialComponent();
 }
 
+[ExcludeFromCodeCoverage]
 public class InterfaceSetPartialComponent : IPipelineComponent<InterfaceContext>
 {
     public Task<Result> Process(PipelineContext<InterfaceContext> context, CancellationToken token)

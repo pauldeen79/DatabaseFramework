@@ -1,11 +1,13 @@
 ﻿namespace DatabaseFramework.CodeGeneration.PipelineComponents;
 
+[ExcludeFromCodeCoverage]
 public class DatabaseObjectBuilderComponentBuilder : IBuilderComponentBuilder
 {
     public IPipelineComponent<BuilderContext> Build()
         => new DatabaseObjectBuilderComponent();
 }
 
+[ExcludeFromCodeCoverage]
 public class DatabaseObjectBuilderComponent : IPipelineComponent<BuilderContext>
 {
     public Task<Result> Process(PipelineContext<BuilderContext> context, CancellationToken token)
