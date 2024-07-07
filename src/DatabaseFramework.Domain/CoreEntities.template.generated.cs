@@ -319,6 +319,11 @@ namespace DatabaseFramework.Domain
         {
             return new DatabaseFramework.Domain.Builders.StoredProcedureBuilder(this);
         }
+
+        IDatabaseObjectBuilder IDatabaseObject.ToBuilder()
+        {
+            return ToBuilder();
+        }
     }
     public partial record StoredProcedureParameter : DatabaseFramework.Domain.Abstractions.INonViewField, DatabaseFramework.Domain.Abstractions.INameContainer
     {
@@ -472,6 +477,11 @@ namespace DatabaseFramework.Domain
         public DatabaseFramework.Domain.Builders.TableBuilder ToBuilder()
         {
             return new DatabaseFramework.Domain.Builders.TableBuilder(this);
+        }
+
+        IDatabaseObjectBuilder IDatabaseObject.ToBuilder()
+        {
+            return ToBuilder();
         }
     }
     public partial record TableField : DatabaseFramework.Domain.Abstractions.INonViewField, DatabaseFramework.Domain.Abstractions.INameContainer, DatabaseFramework.Domain.Abstractions.ICheckConstraintContainer
@@ -636,6 +646,11 @@ namespace DatabaseFramework.Domain
         public DatabaseFramework.Domain.Builders.ViewBuilder ToBuilder()
         {
             return new DatabaseFramework.Domain.Builders.ViewBuilder(this);
+        }
+
+        IDatabaseObjectBuilder IDatabaseObject.ToBuilder()
+        {
+            return ToBuilder();
         }
     }
 }

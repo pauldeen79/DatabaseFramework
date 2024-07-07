@@ -15,7 +15,7 @@ using System.Text;
 #nullable enable
 namespace DatabaseFramework.Domain.Abstractions
 {
-    public interface ICheckConstraintContainer
+    public partial interface ICheckConstraintContainer
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
@@ -24,10 +24,10 @@ namespace DatabaseFramework.Domain.Abstractions
             get;
         }
     }
-    public interface IDatabaseObject : DatabaseFramework.Domain.Abstractions.ISchemaContainer, DatabaseFramework.Domain.Abstractions.INameContainer
+    public partial interface IDatabaseObject : DatabaseFramework.Domain.Abstractions.ISchemaContainer, DatabaseFramework.Domain.Abstractions.INameContainer
     {
     }
-    public interface IFileGroupNameContainer
+    public partial interface IFileGroupNameContainer
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         string FileGroupName
@@ -35,7 +35,7 @@ namespace DatabaseFramework.Domain.Abstractions
             get;
         }
     }
-    public interface INameContainer
+    public partial interface INameContainer
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         string Name
@@ -43,7 +43,7 @@ namespace DatabaseFramework.Domain.Abstractions
             get;
         }
     }
-    public interface INonViewField : DatabaseFramework.Domain.Abstractions.INameContainer
+    public partial interface INonViewField : DatabaseFramework.Domain.Abstractions.INameContainer
     {
         DatabaseFramework.Domain.Domains.SqlFieldType Type
         {
@@ -76,7 +76,7 @@ namespace DatabaseFramework.Domain.Abstractions
             get;
         }
     }
-    public interface ISchemaContainer
+    public partial interface ISchemaContainer
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [System.ComponentModel.DefaultValueAttribute(@"dbo")]
