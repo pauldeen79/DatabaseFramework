@@ -15,7 +15,7 @@ using System.Text;
 #nullable enable
 namespace DatabaseFramework.Domain.Builders.Abstractions
 {
-    public interface ICheckConstraintContainerBuilder
+    public partial interface ICheckConstraintContainerBuilder
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
@@ -25,10 +25,10 @@ namespace DatabaseFramework.Domain.Builders.Abstractions
             set;
         }
     }
-    public interface IDatabaseObjectBuilder : DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder, DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder
+    public partial interface IDatabaseObjectBuilder : DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder, DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder
     {
     }
-    public interface IFileGroupNameContainerBuilder
+    public partial interface IFileGroupNameContainerBuilder
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         string FileGroupName
@@ -37,7 +37,7 @@ namespace DatabaseFramework.Domain.Builders.Abstractions
             set;
         }
     }
-    public interface INameContainerBuilder
+    public partial interface INameContainerBuilder
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         string Name
@@ -46,7 +46,7 @@ namespace DatabaseFramework.Domain.Builders.Abstractions
             set;
         }
     }
-    public interface INonViewFieldBuilder : DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder
+    public partial interface INonViewFieldBuilder : DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder
     {
         DatabaseFramework.Domain.Domains.SqlFieldType Type
         {
@@ -85,7 +85,7 @@ namespace DatabaseFramework.Domain.Builders.Abstractions
             set;
         }
     }
-    public interface ISchemaContainerBuilder
+    public partial interface ISchemaContainerBuilder
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [System.ComponentModel.DefaultValueAttribute(@"dbo")]

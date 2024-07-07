@@ -963,6 +963,11 @@ namespace DatabaseFramework.Domain.Builders
         {
             PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
         }
+
+        IDatabaseObject IDatabaseObjectBuilder.Build()
+        {
+            return Build();
+        }
     }
     public partial class StoredProcedureParameterBuilder : DatabaseFramework.Domain.Builders.Abstractions.INonViewFieldBuilder, DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder, System.ComponentModel.INotifyPropertyChanged
     {
@@ -1508,6 +1513,11 @@ namespace DatabaseFramework.Domain.Builders
         {
             PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
         }
+
+        IDatabaseObject IDatabaseObjectBuilder.Build()
+        {
+            return Build();
+        }
     }
     public partial class TableFieldBuilder : DatabaseFramework.Domain.Builders.Abstractions.INonViewFieldBuilder, DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder, DatabaseFramework.Domain.Builders.Abstractions.ICheckConstraintContainerBuilder, System.ComponentModel.INotifyPropertyChanged
     {
@@ -2033,6 +2043,11 @@ namespace DatabaseFramework.Domain.Builders
         protected void HandlePropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+
+        IDatabaseObject IDatabaseObjectBuilder.Build()
+        {
+            return Build();
         }
     }
 }
