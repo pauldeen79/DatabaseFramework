@@ -15,7 +15,7 @@ using System.Text;
 #nullable enable
 namespace DatabaseFramework.Domain.Abstractions
 {
-    public partial interface ICheckConstraintContainer
+    public interface ICheckConstraintContainer
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
@@ -24,10 +24,11 @@ namespace DatabaseFramework.Domain.Abstractions
             get;
         }
     }
-    public partial interface IDatabaseObject : DatabaseFramework.Domain.Abstractions.ISchemaContainer, DatabaseFramework.Domain.Abstractions.INameContainer
+    public interface IDatabaseObject : DatabaseFramework.Domain.Abstractions.ISchemaContainer, DatabaseFramework.Domain.Abstractions.INameContainer
     {
+        DatabaseFramework.Domain.Builders.Abstractions.IDatabaseObjectBuilder ToBuilder();
     }
-    public partial interface IFileGroupNameContainer
+    public interface IFileGroupNameContainer
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         string FileGroupName
@@ -35,7 +36,7 @@ namespace DatabaseFramework.Domain.Abstractions
             get;
         }
     }
-    public partial interface INameContainer
+    public interface INameContainer
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         string Name
@@ -43,7 +44,7 @@ namespace DatabaseFramework.Domain.Abstractions
             get;
         }
     }
-    public partial interface INonViewField : DatabaseFramework.Domain.Abstractions.INameContainer
+    public interface INonViewField : DatabaseFramework.Domain.Abstractions.INameContainer
     {
         DatabaseFramework.Domain.Domains.SqlFieldType Type
         {
@@ -76,7 +77,7 @@ namespace DatabaseFramework.Domain.Abstractions
             get;
         }
     }
-    public partial interface ISchemaContainer
+    public interface ISchemaContainer
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [System.ComponentModel.DefaultValueAttribute(@"dbo")]
