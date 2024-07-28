@@ -27,6 +27,7 @@ global using DatabaseFramework.CodeGeneration.CodeGenerationProviders;
 global using DatabaseFramework.CodeGeneration.Models;
 global using DatabaseFramework.CodeGeneration.Models.Abstractions;
 global using DatabaseFramework.CodeGeneration.Models.Domains;
+global using DatabaseFramework.CodeGeneration.PipelineComponents;
 global using Microsoft.Extensions.DependencyInjection;
 global using TemplateFramework.Abstractions.CodeGeneration;
 global using TemplateFramework.Abstractions.Extensions;
