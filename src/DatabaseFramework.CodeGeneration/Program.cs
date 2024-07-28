@@ -19,9 +19,6 @@ internal static class Program
             .AddTemplateFrameworkRuntime()
             .AddCsharpExpressionDumper()
             .AddClassFrameworkTemplates()
-            .AddScoped<IBuilderComponentBuilder, DatabaseObjectBuilderComponentBuilder>()
-            .AddScoped<IEntityComponentBuilder, DatabaseObjectEntityComponentBuilder>()
-            .AddScoped<IInterfaceComponentBuilder, DatabaseObjectInterfaceComponentBuilder>()
             .AddScoped<IAssemblyInfoContextService, MyAssemblyInfoContextService>();
 
         var generators = typeof(Program).Assembly.GetExportedTypes()
