@@ -1,8 +1,8 @@
 ﻿namespace DatabaseFramework.TemplateFramework.Templates;
 
-public class IndexTemplate : DatabaseSchemaGeneratorBase<IndexViewModel>, IStringBuilderTemplate
+public class IndexTemplate : DatabaseSchemaGeneratorBase<IndexViewModel>, IBuilderTemplate<StringBuilder>
 {
-    public async Task Render(StringBuilder builder, CancellationToken cancellationToken)
+    public async Task<Result> Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -10,9 +10,11 @@ public class IndexTemplate : DatabaseSchemaGeneratorBase<IndexViewModel>, IStrin
         builder.AppendLine($"CREATE {Model.Unique}NONCLUSTERED INDEX [{Model.Name}] ON [{Model.Schema}].[{Model.TableEntityName}]");
         builder.AppendLine("(");
 
-        await RenderChildTemplatesByModel(Model.Fields, builder, cancellationToken).ConfigureAwait(false);
-
-        builder.AppendLine($") ON [{Model.FileGroupName}]");
-        builder.AppendLine("GO");
+        return (await RenderChildTemplatesByModel(Model.Fields, builder, cancellationToken).ConfigureAwait(false))
+            .OnSuccess(() =>
+            {
+                builder.AppendLine($") ON [{Model.FileGroupName}]");
+                builder.AppendLine("GO");
+            });
     }
 }

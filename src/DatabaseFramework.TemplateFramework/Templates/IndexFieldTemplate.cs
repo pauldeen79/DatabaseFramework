@@ -1,8 +1,8 @@
 ﻿namespace DatabaseFramework.TemplateFramework.Templates;
 
-public class IndexFieldTemplate : DatabaseSchemaGeneratorBase<IndexFieldViewModel>, IStringBuilderTemplate
+public class IndexFieldTemplate : DatabaseSchemaGeneratorBase<IndexFieldViewModel>, IBuilderTemplate<StringBuilder>
 {
-    public Task Render(StringBuilder builder, CancellationToken cancellationToken)
+    public Task<Result> Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -16,6 +16,6 @@ public class IndexFieldTemplate : DatabaseSchemaGeneratorBase<IndexFieldViewMode
 
         builder.AppendLine();
 
-        return Task.CompletedTask;
+        return Task.FromResult(Result.Success());
     }
 }

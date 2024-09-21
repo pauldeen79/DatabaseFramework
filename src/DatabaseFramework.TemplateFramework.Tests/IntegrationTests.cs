@@ -5,7 +5,7 @@ public sealed class IntegrationTests : TestBase, IDisposable
     private readonly ServiceProvider _serviceProvider;
     private readonly IServiceScope _scope;
 
-    private MultipleContentBuilderEnvironment GenerationEnvironment { get; } = new MultipleContentBuilderEnvironment();
+    private MultipleStringContentBuilderEnvironment GenerationEnvironment { get; } = new MultipleStringContentBuilderEnvironment();
     private CodeGenerationSettings CodeGenerationSettings { get; } = new CodeGenerationSettings(string.Empty, "GeneratedCode.sql", dryRun: true);
 
     public IntegrationTests()

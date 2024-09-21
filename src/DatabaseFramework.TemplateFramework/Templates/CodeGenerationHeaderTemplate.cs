@@ -1,15 +1,15 @@
 ﻿namespace DatabaseFramework.TemplateFramework.Templates;
 
-public sealed class CodeGenerationHeaderTemplate : DatabaseSchemaGeneratorBase<CodeGenerationHeaderViewModel>, IStringBuilderTemplate
+public sealed class CodeGenerationHeaderTemplate : DatabaseSchemaGeneratorBase<CodeGenerationHeaderViewModel>, IBuilderTemplate<StringBuilder>
 {
-    public Task Render(StringBuilder builder, CancellationToken cancellationToken)
+    public Task<Result> Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
         if (!Model.CreateCodeGenerationHeader)
         {
-            return Task.CompletedTask;
+            return Task.FromResult(Result.Success());
         }
 
         if (Model.Schema is not null)
@@ -21,6 +21,6 @@ public sealed class CodeGenerationHeaderTemplate : DatabaseSchemaGeneratorBase<C
             builder.AppendLine($"/****** Object:  {Model.ObjectType} [{Model.Name}] ******/");
         }
 
-        return Task.CompletedTask;
+        return Task.FromResult(Result.Success());
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace DatabaseFramework.TemplateFramework.Templates;
 
-public class NonViewFieldTemplate : DatabaseSchemaGeneratorBase<NonViewFieldViewModel>, IStringBuilderTemplate
+public class NonViewFieldTemplate : DatabaseSchemaGeneratorBase<NonViewFieldViewModel>, IBuilderTemplate<StringBuilder>
 {
-    public Task Render(StringBuilder builder, CancellationToken cancellationToken)
+    public Task<Result> Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -34,6 +34,6 @@ public class NonViewFieldTemplate : DatabaseSchemaGeneratorBase<NonViewFieldView
             builder.Append($"({Model.NumericPrecision},{Model.NumericScale})");
         }
 
-        return Task.CompletedTask;
+        return Task.FromResult(Result.Success());
     }
 }

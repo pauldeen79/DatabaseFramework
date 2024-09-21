@@ -1,9 +1,9 @@
 ﻿namespace DatabaseFramework.TemplateFramework.Templates;
 
-public abstract class DatabaseObjectTemplateBase<T> : DatabaseSchemaGeneratorBase<T>, IMultipleContentBuilderTemplate, IStringBuilderTemplate
+public abstract class DatabaseObjectTemplateBase<T> : DatabaseSchemaGeneratorBase<T>, IMultipleContentBuilderTemplate, IBuilderTemplate<StringBuilder>
     where T : DatabaseSchemaGeneratorViewModelBase, INameContainer
 {
-    public async Task Render(IMultipleContentBuilder builder, CancellationToken cancellationToken)
+    public async Task<Result> Render(IMultipleContentBuilder<StringBuilder> builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -27,16 +27,16 @@ public abstract class DatabaseObjectTemplateBase<T> : DatabaseSchemaGeneratorBas
             generationEnvironment = new StringBuilderEnvironment(contentBuilder.Builder);
         }
 
-        await RenderDatabaseObject(generationEnvironment.Builder, cancellationToken);
+        return await RenderDatabaseObject(generationEnvironment.Builder, cancellationToken);
     }
 
-    public async Task Render(StringBuilder builder, CancellationToken cancellationToken)
+    public async Task<Result> Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
-        await RenderDatabaseObject(builder, cancellationToken);
+        return await RenderDatabaseObject(builder, cancellationToken);
     }
 
-    protected abstract Task RenderDatabaseObject(StringBuilder builder, CancellationToken cancellationToken);
+    protected abstract Task<Result> RenderDatabaseObject(StringBuilder builder, CancellationToken cancellationToken);
 }

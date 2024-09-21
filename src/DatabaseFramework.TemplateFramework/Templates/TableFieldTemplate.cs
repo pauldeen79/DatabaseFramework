@@ -1,16 +1,20 @@
 ﻿namespace DatabaseFramework.TemplateFramework.Templates;
 
-public class TableFieldTemplate : DatabaseSchemaGeneratorBase<TableFieldViewModel>, IStringBuilderTemplate
+public class TableFieldTemplate : DatabaseSchemaGeneratorBase<TableFieldViewModel>, IBuilderTemplate<StringBuilder>
 {
-    public async Task Render(StringBuilder builder, CancellationToken cancellationToken)
+    public async Task<Result> Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
         builder.Append($"\t[{Model.Name}] ");
         
-        await RenderChildTemplateByModel(Model.NonViewField, builder, cancellationToken).ConfigureAwait(false);
-        
+        var result = await RenderChildTemplateByModel(Model.NonViewField, builder, cancellationToken).ConfigureAwait(false);
+        if (!result.IsSuccessful())
+        {
+            return result;
+        }
+
         builder.Append($"{Model.Identity} {Model.NullOrNotNull}");
 
         if (Model.HasCheckConstraints)
@@ -18,13 +22,15 @@ public class TableFieldTemplate : DatabaseSchemaGeneratorBase<TableFieldViewMode
             builder.AppendLine();
         }
 
-        await RenderChildTemplatesByModel(Model.CheckConstraints, builder, cancellationToken).ConfigureAwait(false);
+        return (await RenderChildTemplatesByModel(Model.CheckConstraints, builder, cancellationToken).ConfigureAwait(false))
+            .OnSuccess(() =>
+            {
+                if (!Model.IsLastTableField)
+                {
+                    builder.Append(",");
+                }
 
-        if (!Model.IsLastTableField)
-        {
-            builder.Append(",");
-        }
-
-        builder.AppendLine();
+                builder.AppendLine();
+            });
     }
 }

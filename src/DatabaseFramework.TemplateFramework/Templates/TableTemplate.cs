@@ -2,12 +2,17 @@
 
 public sealed class TableTemplate : DatabaseObjectTemplateBase<TableViewModel>
 {
-    protected override async Task RenderDatabaseObject(StringBuilder builder, CancellationToken cancellationToken)
+    protected override async Task<Result> RenderDatabaseObject(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
-        await RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder, cancellationToken).ConfigureAwait(false);
+        var result = await RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder, cancellationToken).ConfigureAwait(false);
+        if (!result.IsSuccessful())
+        {
+            return result;
+        }
+
         builder.AppendLine(@$"SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -21,14 +26,23 @@ CREATE TABLE [{Model.Schema}].[{Model.Name}](");
             .Concat(Model.UniqueConstraints.Cast<object>())
             .Concat(Model.CheckConstraints.Cast<object>());
 
-        await RenderChildTemplatesByModel(fieldsAndPrimaryKeyConstraints, builder, cancellationToken).ConfigureAwait(false);
+        result = await RenderChildTemplatesByModel(fieldsAndPrimaryKeyConstraints, builder, cancellationToken).ConfigureAwait(false);
+        if (!result.IsSuccessful())
+        {
+            return result;
+        }
 
         builder.AppendLine(@$") ON [{Model.FileGroupName}]
 GO
 SET ANSI_PADDING OFF
 GO");
 
-        await RenderChildTemplatesByModel(Model.Indexes, builder, cancellationToken).ConfigureAwait(false);
-        await RenderChildTemplatesByModel(Model.DefaultValueConstraints, builder, cancellationToken).ConfigureAwait(false);
+        result = await RenderChildTemplatesByModel(Model.Indexes, builder, cancellationToken).ConfigureAwait(false);
+        if (!result.IsSuccessful())
+        {
+            return result;
+        }
+
+        return await RenderChildTemplatesByModel(Model.DefaultValueConstraints, builder, cancellationToken).ConfigureAwait(false);
     }
 }
