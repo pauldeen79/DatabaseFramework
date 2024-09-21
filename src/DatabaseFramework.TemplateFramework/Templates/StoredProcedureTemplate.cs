@@ -7,31 +7,29 @@ public class StoredProcedureTemplate : DatabaseObjectTemplateBase<StoredProcedur
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
-        var result = await RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder, cancellationToken).ConfigureAwait(false);
-        if (!result.IsSuccessful())
-        {
-            return result;
-        }
-
-        builder.AppendLine(@$"SET ANSI_NULLS ON
+        return await (await RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder, cancellationToken).ConfigureAwait(false))
+            .OnSuccess(async () =>
+            {
+                builder.AppendLine(@$"SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [{Model.Schema}].[{Model.Name}]");
 
-        result = await RenderChildTemplatesByModel(Model.Parameters, builder, cancellationToken).ConfigureAwait(false);
-        if (!result.IsSuccessful())
-        {
-            return result;
-        }
-        builder.AppendLine(@"AS
+                return await (await RenderChildTemplatesByModel(Model.Parameters, builder, cancellationToken).ConfigureAwait(false))
+                    .OnSuccess(async () =>
+                    {
+                        builder.AppendLine(@"AS
 BEGIN");
 
-        return (await RenderChildTemplatesByModel(Model.Statements, builder, cancellationToken).ConfigureAwait(false))
-            .OnSuccess(() =>
-            {
-                builder.AppendLine(@"END
+                        return await (await RenderChildTemplatesByModel(Model.Statements, builder, cancellationToken).ConfigureAwait(false))
+                        .OnSuccess(() =>
+                        {
+                            builder.AppendLine(@"END
 GO");
-            });
+                            return Task.FromResult(Result.Success());
+                        }).ConfigureAwait(false);
+                    }).ConfigureAwait(false);
+            }).ConfigureAwait(false);
     }
 }

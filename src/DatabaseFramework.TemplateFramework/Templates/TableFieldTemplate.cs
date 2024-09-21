@@ -8,29 +8,29 @@ public class TableFieldTemplate : DatabaseSchemaGeneratorBase<TableFieldViewMode
         Guard.IsNotNull(Model);
 
         builder.Append($"\t[{Model.Name}] ");
-        
-        var result = await RenderChildTemplateByModel(Model.NonViewField, builder, cancellationToken).ConfigureAwait(false);
-        if (!result.IsSuccessful())
-        {
-            return result;
-        }
 
-        builder.Append($"{Model.Identity} {Model.NullOrNotNull}");
-
-        if (Model.HasCheckConstraints)
-        {
-            builder.AppendLine();
-        }
-
-        return (await RenderChildTemplatesByModel(Model.CheckConstraints, builder, cancellationToken).ConfigureAwait(false))
-            .OnSuccess(() =>
+        return await (await RenderChildTemplateByModel(Model.NonViewField, builder, cancellationToken).ConfigureAwait(false))
+            .OnSuccess(async () =>
             {
-                if (!Model.IsLastTableField)
+                builder.Append($"{Model.Identity} {Model.NullOrNotNull}");
+
+                if (Model.HasCheckConstraints)
                 {
-                    builder.Append(",");
+                    builder.AppendLine();
                 }
 
-                builder.AppendLine();
-            });
+                return await (await RenderChildTemplatesByModel(Model.CheckConstraints, builder, cancellationToken).ConfigureAwait(false))
+                    .OnSuccess(() =>
+                    {
+                        if (!Model.IsLastTableField)
+                        {
+                            builder.Append(",");
+                        }
+
+                        builder.AppendLine();
+
+                        return Task.FromResult(Result.Success());
+                    }).ConfigureAwait(false);
+            }).ConfigureAwait(false);
     }
 }

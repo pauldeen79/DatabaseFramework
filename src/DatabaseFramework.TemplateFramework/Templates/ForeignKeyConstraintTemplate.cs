@@ -13,22 +13,22 @@ public class ForeignKeyConstraintTemplate : DatabaseSchemaGeneratorBase<ForeignK
                 builder.Append($"ALTER TABLE [{Model.Schema}].[{Model.TableEntityName}]  WITH CHECK ADD  CONSTRAINT [{Model.Name}] FOREIGN KEY(");
 
                 return await (await RenderChildTemplatesByModel(Model.LocalFields, builder, cancellationToken).ConfigureAwait(false))
-                .OnSuccess(async () =>
-                {
-                    builder.AppendLine(")");
-                    builder.Append($"REFERENCES [{Model.Schema}].[{Model.ForeignTableName}] (");
-
-                    return (await RenderChildTemplatesByModel(Model.ForeignFields, builder, cancellationToken).ConfigureAwait(false))
-                    .OnSuccess(() =>
+                    .OnSuccess(async () =>
                     {
                         builder.AppendLine(")");
-                        builder.AppendLine($"ON UPDATE {Model.CascadeUpdate}");
-                        builder.AppendLine($"ON DELETE {Model.CascadeDelete}");
-                        builder.AppendLine("GO");
-                        builder.AppendLine($"ALTER TABLE [{Model.Schema}].[{Model.TableEntityName}] CHECK CONSTRAINT [{Model.Name}]");
-                        builder.AppendLine("GO");
-                    });
-                }).ConfigureAwait(false);
+                        builder.Append($"REFERENCES [{Model.Schema}].[{Model.ForeignTableName}] (");
+
+                        return (await RenderChildTemplatesByModel(Model.ForeignFields, builder, cancellationToken).ConfigureAwait(false))
+                            .OnSuccess(() =>
+                            {
+                                builder.AppendLine(")");
+                                builder.AppendLine($"ON UPDATE {Model.CascadeUpdate}");
+                                builder.AppendLine($"ON DELETE {Model.CascadeDelete}");
+                                builder.AppendLine("GO");
+                                builder.AppendLine($"ALTER TABLE [{Model.Schema}].[{Model.TableEntityName}] CHECK CONSTRAINT [{Model.Name}]");
+                                builder.AppendLine("GO");
+                            });
+                    }).ConfigureAwait(false);
             }).ConfigureAwait(false);
     }
 }
