@@ -1,8 +1,8 @@
 ﻿namespace DatabaseFramework.TemplateFramework.Templates;
 
-public class UniqueConstraintFieldTemplate : DatabaseSchemaGeneratorBase<UniqueConstraintFieldViewModel>, IStringBuilderTemplate
+public class UniqueConstraintFieldTemplate : DatabaseSchemaGeneratorBase<UniqueConstraintFieldViewModel>, IBuilderTemplate<StringBuilder>
 {
-    public Task Render(StringBuilder builder, CancellationToken cancellationToken)
+    public Task<Result> Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -16,6 +16,6 @@ public class UniqueConstraintFieldTemplate : DatabaseSchemaGeneratorBase<UniqueC
 
         builder.AppendLine();
 
-        return Task.CompletedTask;
+        return Task.FromResult(Result.Success());
     }
 }

@@ -21,23 +21,21 @@ public abstract class DatabaseSchemaGeneratorBase<TModel> : TemplateBase, IModel
 
     public TModel? Model { get; set; }
 
-    protected async Task RenderChildTemplateByModel(object model, StringBuilder builder, CancellationToken cancellationToken)
-    {
-        await RenderChildTemplateByModel(model, new StringBuilderEnvironment(builder), cancellationToken).ConfigureAwait(false);
-    }
+    protected async Task<Result> RenderChildTemplateByModel(object model, StringBuilder builder, CancellationToken cancellationToken)
+        => await RenderChildTemplateByModel(model, new StringBuilderEnvironment(builder), cancellationToken).ConfigureAwait(false);
 
-    protected async Task RenderChildTemplateByModel(object model, IGenerationEnvironment generationEnvironment, CancellationToken cancellationToken)
+    protected async Task<Result> RenderChildTemplateByModel(object model, IGenerationEnvironment generationEnvironment, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(Context);
-        await Context.Engine.RenderChildTemplate(model, generationEnvironment, Context, new TemplateByModelIdentifier(model), cancellationToken).ConfigureAwait(false);
+        return await Context.Engine.RenderChildTemplate(model, generationEnvironment, Context, new TemplateByModelIdentifier(model), cancellationToken).ConfigureAwait(false);
     }
 
-    protected Task RenderChildTemplatesByModel(IEnumerable models, StringBuilder builder, CancellationToken cancellationToken)
+    protected Task<Result> RenderChildTemplatesByModel(IEnumerable models, StringBuilder builder, CancellationToken cancellationToken)
         => RenderChildTemplatesByModel(models, new StringBuilderEnvironment(builder), cancellationToken);
 
-    protected async Task RenderChildTemplatesByModel(IEnumerable models, IGenerationEnvironment generationEnvironment, CancellationToken cancellationToken)
+    protected async Task<Result> RenderChildTemplatesByModel(IEnumerable models, IGenerationEnvironment generationEnvironment, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(Context);
-        await Context.Engine.RenderChildTemplates(models, generationEnvironment, Context, model => new TemplateByModelIdentifier(model), cancellationToken).ConfigureAwait(false);
+        return await Context.Engine.RenderChildTemplates(models, generationEnvironment, Context, model => new TemplateByModelIdentifier(model), cancellationToken).ConfigureAwait(false);
     }
 }

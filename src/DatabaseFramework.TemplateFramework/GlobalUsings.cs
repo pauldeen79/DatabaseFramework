@@ -2,6 +2,7 @@
 global using System.Text;
 global using CommunityToolkit.Diagnostics;
 global using CrossCutting.Common.Extensions;
+global using CrossCutting.Common.Results;
 global using DatabaseFramework.Database.Extensions;
 global using DatabaseFramework.Domain;
 global using DatabaseFramework.Domain.Abstractions;

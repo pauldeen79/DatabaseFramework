@@ -1,8 +1,8 @@
 ﻿namespace DatabaseFramework.TemplateFramework.Templates;
 
-public class CheckConstraintTemplate : DatabaseSchemaGeneratorBase<CheckConstraintViewModel>, IStringBuilderTemplate
+public class CheckConstraintTemplate : DatabaseSchemaGeneratorBase<CheckConstraintViewModel>, IBuilderTemplate<StringBuilder>
 {
-    public Task Render(StringBuilder builder, CancellationToken cancellationToken)
+    public Task<Result> Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -19,6 +19,6 @@ public class CheckConstraintTemplate : DatabaseSchemaGeneratorBase<CheckConstrai
             builder.AppendLine();
         }
 
-        return Task.CompletedTask;
+        return Task.FromResult(Result.Success());
     }
 }

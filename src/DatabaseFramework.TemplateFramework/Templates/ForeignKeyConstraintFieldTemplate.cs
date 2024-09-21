@@ -1,8 +1,8 @@
 ﻿namespace DatabaseFramework.TemplateFramework.Templates;
 
-public class ForeignKeyConstraintFieldTemplate : DatabaseSchemaGeneratorBase<ForeignKeyConstraintFieldViewModel>, IStringBuilderTemplate
+public class ForeignKeyConstraintFieldTemplate : DatabaseSchemaGeneratorBase<ForeignKeyConstraintFieldViewModel>, IBuilderTemplate<StringBuilder>
 {
-    public Task Render(StringBuilder builder, CancellationToken cancellationToken)
+    public Task<Result> Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -14,6 +14,6 @@ public class ForeignKeyConstraintFieldTemplate : DatabaseSchemaGeneratorBase<For
             builder.Append(",");
         }
 
-        return Task.CompletedTask;
+        return Task.FromResult(Result.Success());
     }
 }

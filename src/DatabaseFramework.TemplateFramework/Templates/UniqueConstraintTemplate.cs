@@ -1,8 +1,8 @@
 ﻿namespace DatabaseFramework.TemplateFramework.Templates;
 
-public class UniqueConstraintTemplate : DatabaseSchemaGeneratorBase<UniqueConstraintViewModel>, IStringBuilderTemplate
+public class UniqueConstraintTemplate : DatabaseSchemaGeneratorBase<UniqueConstraintViewModel>, IBuilderTemplate<StringBuilder>
 {
-    public async Task Render(StringBuilder builder, CancellationToken cancellationToken)
+    public async Task<Result> Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -10,8 +10,10 @@ public class UniqueConstraintTemplate : DatabaseSchemaGeneratorBase<UniqueConstr
         builder.AppendLine(@$" CONSTRAINT [{Model.Name}] UNIQUE NONCLUSTERED
 (");
 
-        await RenderChildTemplatesByModel(Model.Fields, builder, cancellationToken).ConfigureAwait(false);
-
-        builder.AppendLine($") ON [{Model.FileGroupName}]");
+        return (await RenderChildTemplatesByModel(Model.Fields, builder, cancellationToken).ConfigureAwait(false))
+            .OnSuccess(() =>
+            {
+                builder.AppendLine($") ON [{Model.FileGroupName}]");
+            });
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace DatabaseFramework.TemplateFramework.Templates;
 
-public class DefaultValueConstraintTemplate : DatabaseSchemaGeneratorBase<DefaultValueConstraintViewModel>, IStringBuilderTemplate
+public class DefaultValueConstraintTemplate : DatabaseSchemaGeneratorBase<DefaultValueConstraintViewModel>, IBuilderTemplate<StringBuilder>
 {
-    public Task Render(StringBuilder builder, CancellationToken cancellationToken)
+    public Task<Result> Render(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -10,6 +10,6 @@ public class DefaultValueConstraintTemplate : DatabaseSchemaGeneratorBase<Defaul
         builder.AppendLine($"ALTER TABLE [{Model.TableEntityName}] ADD CONSTRAINT [{Model.Name}] DEFAULT ({Model.DefaultValue}) FOR [{Model.FieldName}]");
         builder.AppendLine("GO");
 
-        return Task.CompletedTask;
+        return Task.FromResult(Result.Success());
     }
 }
