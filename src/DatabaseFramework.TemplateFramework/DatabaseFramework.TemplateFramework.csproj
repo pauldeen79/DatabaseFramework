@@ -9,10 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="pauldeen79.CrossCutting.ProcessingPipeline" Version="8.2.2" />
-    <PackageReference Include="pauldeen79.CrossCutting.Utilities.Parsers" Version="5.3.3" />
-    <PackageReference Include="pauldeen79.TemplateFramework.Core" Version="1.0.2" />
-    <PackageReference Include="pauldeen79.TemplateFramework.TemplateProviders.ChildTemplateProvider" Version="1.0.2" />
+    <PackageReference Include="pauldeen79.CrossCutting.ProcessingPipeline" Version="8.2.3" />
+    <PackageReference Include="pauldeen79.CrossCutting.Utilities.Parsers" Version="5.3.4" />
+    <PackageReference Include="pauldeen79.TemplateFramework.Core" Version="1.0.3" />
+    <PackageReference Include="pauldeen79.TemplateFramework.TemplateProviders.ChildTemplateProvider" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
