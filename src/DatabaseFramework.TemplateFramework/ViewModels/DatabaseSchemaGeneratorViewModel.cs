@@ -5,10 +5,12 @@ public class DatabaseSchemaGeneratorViewModel : DatabaseSchemaGeneratorViewModel
     public IOrderedEnumerable<IGrouping<string, IDatabaseObject>> Schemas
         => GetModel().GroupBy(x => x.Schema).OrderBy(x => x.Key);
 
+#pragma warning disable S2325 // Methods and properties that don't access instance data should be static
     public IEnumerable<INameContainer> GetDatabaseObjects(IEnumerable<INameContainer> objects)
+#pragma warning restore S2325 // Methods and properties that don't access instance data should be static
         => objects.SelectMany(GetItemsWithForeignKeyConstraints).OrderBy(GetOrder).ThenBy(item => item.Name);
 
-    private IEnumerable<INameContainer> GetItemsWithForeignKeyConstraints(INameContainer item)
+    private static IEnumerable<INameContainer> GetItemsWithForeignKeyConstraints(INameContainer item)
     {
         yield return item;
 
