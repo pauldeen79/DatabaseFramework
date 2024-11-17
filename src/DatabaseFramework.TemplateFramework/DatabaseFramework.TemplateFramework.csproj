@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="pauldeen79.CrossCutting.ProcessingPipeline" Version="8.2.3" />
-    <PackageReference Include="pauldeen79.CrossCutting.Utilities.Parsers" Version="5.3.4" />
+    <PackageReference Include="pauldeen79.CrossCutting.Utilities.Parsers" Version="5.4.0" />
     <PackageReference Include="pauldeen79.TemplateFramework.Core" Version="1.0.3" />
     <PackageReference Include="pauldeen79.TemplateFramework.TemplateProviders.ChildTemplateProvider" Version="1.0.3" />
   </ItemGroup>
