@@ -19,6 +19,7 @@ internal static class Program
             .AddTemplateFrameworkRuntime()
             .AddCsharpExpressionDumper()
             .AddClassFrameworkTemplates()
+            .AddExpressionParser()
             .AddScoped<IBuilderComponentBuilder, DatabaseObjectBuilderComponentBuilder>()
             .AddScoped<IEntityComponentBuilder, DatabaseObjectEntityComponentBuilder>()
             .AddScoped<IInterfaceComponentBuilder, DatabaseObjectInterfaceComponentBuilder>()
