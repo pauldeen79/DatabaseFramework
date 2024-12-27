@@ -113,8 +113,8 @@ namespace DatabaseFramework.Domain
 
         public ForeignKeyConstraint(System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.ForeignKeyConstraintField> localFields, System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.ForeignKeyConstraintField> foreignFields, string foreignTableName, DatabaseFramework.Domain.Domains.CascadeAction cascadeUpdate, DatabaseFramework.Domain.Domains.CascadeAction cascadeDelete, string name)
         {
-            this.LocalFields = localFields is null ? null : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.ForeignKeyConstraintField>(localFields);
-            this.ForeignFields = foreignFields is null ? null : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.ForeignKeyConstraintField>(foreignFields);
+            this.LocalFields = localFields is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.ForeignKeyConstraintField>(localFields);
+            this.ForeignFields = foreignFields is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.ForeignKeyConstraintField>(foreignFields);
             this.ForeignTableName = foreignTableName;
             this.CascadeUpdate = cascadeUpdate;
             this.CascadeDelete = cascadeDelete;
@@ -175,7 +175,7 @@ namespace DatabaseFramework.Domain
 
         public Index(System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.IndexField> fields, bool unique, string name, string fileGroupName)
         {
-            this.Fields = fields is null ? null : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.IndexField>(fields);
+            this.Fields = fields is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.IndexField>(fields);
             this.Unique = unique;
             this.Name = name;
             this.FileGroupName = fileGroupName;
@@ -236,7 +236,7 @@ namespace DatabaseFramework.Domain
 
         public PrimaryKeyConstraint(System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.PrimaryKeyConstraintField> fields, string name, string fileGroupName)
         {
-            this.Fields = fields is null ? null : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.PrimaryKeyConstraintField>(fields);
+            this.Fields = fields is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.PrimaryKeyConstraintField>(fields);
             this.Name = name;
             this.FileGroupName = fileGroupName;
             System.ComponentModel.DataAnnotations.Validator.ValidateObject(this, new System.ComponentModel.DataAnnotations.ValidationContext(this, null, null), true);
@@ -303,8 +303,8 @@ namespace DatabaseFramework.Domain
 
         public StoredProcedure(System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.SqlStatementBase> statements, System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.StoredProcedureParameter> parameters, string schema, string name)
         {
-            this.Statements = statements is null ? null : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.SqlStatementBase>(statements);
-            this.Parameters = parameters is null ? null : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.StoredProcedureParameter>(parameters);
+            this.Statements = statements is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.SqlStatementBase>(statements);
+            this.Parameters = parameters is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.StoredProcedureParameter>(parameters);
             this.Schema = schema;
             this.Name = name;
             System.ComponentModel.DataAnnotations.Validator.ValidateObject(this, new System.ComponentModel.DataAnnotations.ValidationContext(this, null, null), true);
@@ -456,16 +456,16 @@ namespace DatabaseFramework.Domain
 
         public Table(System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.PrimaryKeyConstraint> primaryKeyConstraints, System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.UniqueConstraint> uniqueConstraints, System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.DefaultValueConstraint> defaultValueConstraints, System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.ForeignKeyConstraint> foreignKeyConstraints, System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.Index> indexes, System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.TableField> fields, string schema, string name, string fileGroupName, System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.CheckConstraint> checkConstraints)
         {
-            this.PrimaryKeyConstraints = primaryKeyConstraints is null ? null : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.PrimaryKeyConstraint>(primaryKeyConstraints);
-            this.UniqueConstraints = uniqueConstraints is null ? null : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.UniqueConstraint>(uniqueConstraints);
-            this.DefaultValueConstraints = defaultValueConstraints is null ? null : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.DefaultValueConstraint>(defaultValueConstraints);
-            this.ForeignKeyConstraints = foreignKeyConstraints is null ? null : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.ForeignKeyConstraint>(foreignKeyConstraints);
-            this.Indexes = indexes is null ? null : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.Index>(indexes);
-            this.Fields = fields is null ? null : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.TableField>(fields);
+            this.PrimaryKeyConstraints = primaryKeyConstraints is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.PrimaryKeyConstraint>(primaryKeyConstraints);
+            this.UniqueConstraints = uniqueConstraints is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.UniqueConstraint>(uniqueConstraints);
+            this.DefaultValueConstraints = defaultValueConstraints is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.DefaultValueConstraint>(defaultValueConstraints);
+            this.ForeignKeyConstraints = foreignKeyConstraints is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.ForeignKeyConstraint>(foreignKeyConstraints);
+            this.Indexes = indexes is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.Index>(indexes);
+            this.Fields = fields is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.TableField>(fields);
             this.Schema = schema;
             this.Name = name;
             this.FileGroupName = fileGroupName;
-            this.CheckConstraints = checkConstraints is null ? null : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.CheckConstraint>(checkConstraints);
+            this.CheckConstraints = checkConstraints is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.CheckConstraint>(checkConstraints);
             System.ComponentModel.DataAnnotations.Validator.ValidateObject(this, new System.ComponentModel.DataAnnotations.ValidationContext(this, null, null), true);
         }
 
@@ -546,7 +546,7 @@ namespace DatabaseFramework.Domain
             this.StringCollation = stringCollation;
             this.IsStringMaxLength = isStringMaxLength;
             this.Name = name;
-            this.CheckConstraints = checkConstraints is null ? null : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.CheckConstraint>(checkConstraints);
+            this.CheckConstraints = checkConstraints is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.CheckConstraint>(checkConstraints);
             System.ComponentModel.DataAnnotations.Validator.ValidateObject(this, new System.ComponentModel.DataAnnotations.ValidationContext(this, null, null), true);
         }
 
@@ -579,7 +579,7 @@ namespace DatabaseFramework.Domain
 
         public UniqueConstraint(System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.UniqueConstraintField> fields, string name, string fileGroupName)
         {
-            this.Fields = fields is null ? null : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.UniqueConstraintField>(fields);
+            this.Fields = fields is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.UniqueConstraintField>(fields);
             this.Name = name;
             this.FileGroupName = fileGroupName;
             System.ComponentModel.DataAnnotations.Validator.ValidateObject(this, new System.ComponentModel.DataAnnotations.ValidationContext(this, null, null), true);

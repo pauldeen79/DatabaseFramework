@@ -2,6 +2,7 @@
 global using System.Text;
 global using AutoFixture;
 global using AutoFixture.AutoNSubstitute;
+global using CrossCutting.Common.Results;
 global using CrossCutting.Utilities.Parsers.Extensions;
 global using DatabaseFramework.Domain.Abstractions;
 global using DatabaseFramework.Domain.Builders;

@@ -48,9 +48,10 @@ public sealed class IntegrationTests : TestBase, IDisposable
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
+        result.Status.Should().Be(ResultStatus.Ok);
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
         GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"/****** Object:  Table [dbo].[MyTable] ******/
 SET ANSI_NULLS ON
@@ -76,9 +77,10 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TablesCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
+        result.Status.Should().Be(ResultStatus.Ok);
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
         GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"/****** Object:  Table [dbo].[Table1] ******/
 SET ANSI_NULLS ON
@@ -130,9 +132,10 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithVarcharAndNumericFieldsCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
+        result.Status.Should().Be(ResultStatus.Ok);
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
         GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
 GO
@@ -159,9 +162,10 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithCheckConstraintsOnFieldLevelCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
+        result.Status.Should().Be(ResultStatus.Ok);
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
         GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
 GO
@@ -190,9 +194,10 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithCheckConstraintsOnTableLevelCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
+        result.Status.Should().Be(ResultStatus.Ok);
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
         GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
 GO
@@ -222,9 +227,10 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithIndexesCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
+        result.Status.Should().Be(ResultStatus.Ok);
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
         GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
 GO
@@ -261,9 +267,10 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithPrimaryKeyConstraintCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
+        result.Status.Should().Be(ResultStatus.Ok);
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
         GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
 GO
@@ -294,9 +301,10 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithUniqueConstraintCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
+        result.Status.Should().Be(ResultStatus.Ok);
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
         GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"/****** Object:  Table [dbo].[Table1] ******/
 SET ANSI_NULLS ON
@@ -328,9 +336,10 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithDefaultValueConstraintCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
+        result.Status.Should().Be(ResultStatus.Ok);
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
         GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
 GO
@@ -359,9 +368,10 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<StoredProcedureContainingStatementsCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
+        result.Status.Should().Be(ResultStatus.Ok);
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
         GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
 GO
@@ -387,9 +397,10 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithForeignKeyConstraintCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
+        result.Status.Should().Be(ResultStatus.Ok);
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
         GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
 GO
@@ -423,9 +434,10 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithCascadeForeignKeyConstraintCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
+        result.Status.Should().Be(ResultStatus.Ok);
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
         GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"/****** Object:  Table [dbo].[Table1] ******/
 SET ANSI_NULLS ON
@@ -461,9 +473,10 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithIdentityFieldCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
+        result.Status.Should().Be(ResultStatus.Ok);
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
         GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
 GO
@@ -490,9 +503,10 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<ViewCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
+        result.Status.Should().Be(ResultStatus.Ok);
         GenerationEnvironment.Builder.Contents.Should().ContainSingle();
         GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
 GO
@@ -538,9 +552,10 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<MultipleFilesCodeGenerationProvider>();
 
         // Act
-        await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
+        result.Status.Should().Be(ResultStatus.Ok);
         GenerationEnvironment.Builder.Contents.Should().HaveCount(3);
         GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"/****** Object:  Table [dbo].[MyTable] ******/
 SET ANSI_NULLS ON
@@ -612,30 +627,30 @@ GO
 
     private sealed class TableCodeGenerationProvider : TestCodeGenerationProviderBase
     {
-        public override Task<IEnumerable<IDatabaseObject>> GetModel() => Task.FromResult<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder()
                 .WithName("MyTable")
                 .AddFields(new TableFieldBuilder().WithName("MyField").WithType(SqlFieldType.VarChar).WithStringLength(32))
                 .Build()
-        ]);
+        ]));
     }
 
     private sealed class TablesCodeGenerationProvider : TestCodeGenerationProviderBase
     {
-        public override Task<IEnumerable<IDatabaseObject>> GetModel() => Task.FromResult<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields(new TableFieldBuilder().WithName("Field").WithType(SqlFieldType.Int)).Build(),
             new TableBuilder().WithName("Table2").AddFields(new TableFieldBuilder().WithName("Field").WithType(SqlFieldType.Int)).Build(),
             new TableBuilder().WithName("Table3").AddFields(new TableFieldBuilder().WithName("Field").WithType(SqlFieldType.Int)).Build()
-        ]);
+        ]));
     }
 
     private sealed class TableWithVarcharAndNumericFieldsCodeGenerationProvider : TestCodeGenerationProviderBase
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<IEnumerable<IDatabaseObject>> GetModel() => Task.FromResult<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -643,14 +658,14 @@ GO
                 new TableFieldBuilder().WithName("Field2").WithType(SqlFieldType.VarChar).WithStringLength(32).WithStringCollation("Latin1_General_CI_AS"),
                 new TableFieldBuilder().WithName("Field3").WithType(SqlFieldType.Numeric).WithIsRequired().WithNumericPrecision(8).WithNumericScale(2)
             ).Build()
-        ]);
+        ]));
     }
 
     private sealed class TableWithCheckConstraintsOnFieldLevelCodeGenerationProvider : TestCodeGenerationProviderBase
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<IEnumerable<IDatabaseObject>> GetModel() => Task.FromResult<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -658,14 +673,14 @@ GO
                 new TableFieldBuilder().WithName("Field2").WithType(SqlFieldType.VarChar).WithStringLength(32),
                 new TableFieldBuilder().WithName("Field3").WithType(SqlFieldType.Numeric).WithIsRequired().WithNumericPrecision(8).WithNumericScale(2)
             ).Build()
-        ]);
+        ]));
     }
 
     private sealed class TableWithCheckConstraintsOnTableLevelCodeGenerationProvider : TestCodeGenerationProviderBase
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<IEnumerable<IDatabaseObject>> GetModel() => Task.FromResult<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -676,14 +691,14 @@ GO
                 new CheckConstraintBuilder().WithName("MyCheckConstraint1").WithExpression("Field1 > 10"),
                 new CheckConstraintBuilder().WithName("MyCheckConstraint2").WithExpression("Field2 > 20")
             ).Build()
-        ]);
+        ]));
     }
 
     private sealed class TableWithIndexesCodeGenerationProvider : TestCodeGenerationProviderBase
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<IEnumerable<IDatabaseObject>> GetModel() => Task.FromResult<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -701,14 +716,14 @@ GO
                     new IndexFieldBuilder().WithName("Field2").WithIsDescending()
                 )
             ).Build()
-        ]);
+        ]));
     }
 
     private sealed class TableWithPrimaryKeyConstraintCodeGenerationProvider : TestCodeGenerationProviderBase
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<IEnumerable<IDatabaseObject>> GetModel() => Task.FromResult<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -722,12 +737,12 @@ GO
                     new PrimaryKeyConstraintFieldBuilder().WithName("Field1")
                 )
             ).Build()
-        ]);
+        ]));
     }
 
     private sealed class TableWithUniqueConstraintCodeGenerationProvider : TestCodeGenerationProviderBase
     {
-        public override Task<IEnumerable<IDatabaseObject>> GetModel() => Task.FromResult<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -741,14 +756,14 @@ GO
                     new UniqueConstraintFieldBuilder().WithName("Field1")
                 )
             ).Build()
-        ]);
+        ]));
     }
 
     private sealed class TableWithDefaultValueConstraintCodeGenerationProvider : TestCodeGenerationProviderBase
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<IEnumerable<IDatabaseObject>> GetModel() => Task.FromResult<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -759,14 +774,14 @@ GO
             (
                 new DefaultValueConstraintBuilder().WithFieldName("Field1").WithDefaultValue("2").WithName("DVC")
             ).Build()
-        ]);
+        ]));
     }
 
     private sealed class StoredProcedureContainingStatementsCodeGenerationProvider : TestCodeGenerationProviderBase
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<IEnumerable<IDatabaseObject>> GetModel() => Task.FromResult<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new StoredProcedureBuilder().WithName("usp_Test").AddParameters
             (
@@ -777,14 +792,14 @@ GO
                 new StringSqlStatementBuilder().WithStatement("--statement 1 goes here"),
                 new StringSqlStatementBuilder().WithStatement("--statement 2 goes here")
             ).Build()
-        ]);
+        ]));
     }
 
     private sealed class TableWithForeignKeyConstraintCodeGenerationProvider : TestCodeGenerationProviderBase
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<IEnumerable<IDatabaseObject>> GetModel() => Task.FromResult<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -803,12 +818,12 @@ GO
                     new ForeignKeyConstraintFieldBuilder().WithName("RemoteField2")
                 )
             ).Build()
-        ]);
+        ]));
     }
 
     private sealed class TableWithCascadeForeignKeyConstraintCodeGenerationProvider : TestCodeGenerationProviderBase
     {
-        public override Task<IEnumerable<IDatabaseObject>> GetModel() => Task.FromResult<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -827,14 +842,14 @@ GO
                     new ForeignKeyConstraintFieldBuilder().WithName("RemoteField2")
                 ).WithCascadeUpdate(CascadeAction.Cascade).WithCascadeDelete(CascadeAction.Cascade)
             ).Build()
-        ]);
+        ]));
     }
 
     private sealed class TableWithIdentityFieldCodeGenerationProvider : TestCodeGenerationProviderBase
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<IEnumerable<IDatabaseObject>> GetModel() => Task.FromResult<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -842,14 +857,14 @@ GO
                 new TableFieldBuilder().WithName("Field2").WithType(SqlFieldType.VarChar).WithStringLength(32),
                 new TableFieldBuilder().WithName("Field3").WithType(SqlFieldType.Numeric).WithIsRequired().WithNumericPrecision(8).WithNumericScale(2)
             ).Build()
-        ]);
+        ]));
     }
 
     private sealed class ViewCodeGenerationProvider : TestCodeGenerationProviderBase
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<IEnumerable<IDatabaseObject>> GetModel() => Task.FromResult<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new ViewBuilder().WithName("View1")
                 .WithDefinition(@"SELECT
@@ -874,14 +889,14 @@ ORDER BY
     [table1.Field1] DESC,
     [table1.Field2] ASC")
                 .Build()
-        ]);
+        ]));
     }
 
     private sealed class MultipleFilesCodeGenerationProvider : TestCodeGenerationProviderBase
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithGenerateMultipleFiles().Build();
 
-        public override Task<IEnumerable<IDatabaseObject>> GetModel() => Task.FromResult<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder()
                 .WithName("MyTable")
@@ -907,6 +922,6 @@ FROM
                     new StringSqlStatementBuilder().WithStatement("--statement 2 goes here")
                 )
             .Build()
-        ]);
+        ]));
     }
 }
