@@ -11,8 +11,8 @@
   <ItemGroup>
     <PackageReference Include="pauldeen79.CrossCutting.ProcessingPipeline" Version="8.2.3" />
     <PackageReference Include="pauldeen79.CrossCutting.Utilities.Parsers" Version="6.2.0" />
-    <PackageReference Include="pauldeen79.TemplateFramework.Core" Version="2.0.0" />
-    <PackageReference Include="pauldeen79.TemplateFramework.TemplateProviders.ChildTemplateProvider" Version="2.0.0" />
+    <PackageReference Include="pauldeen79.TemplateFramework.Core" Version="2.0.1" />
+    <PackageReference Include="pauldeen79.TemplateFramework.TemplateProviders.ChildTemplateProvider" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
