@@ -6,6 +6,7 @@ global using CrossCutting.Common.Results;
 global using CrossCutting.Utilities.Parsers.Extensions;
 global using DatabaseFramework.Domain.Abstractions;
 global using DatabaseFramework.Domain.Builders;
+global using DatabaseFramework.Domain.Builders.Extensions;
 global using DatabaseFramework.Domain.Builders.SqlStatements;
 global using DatabaseFramework.Domain.Domains;
 global using DatabaseFramework.TemplateFramework.Builders;

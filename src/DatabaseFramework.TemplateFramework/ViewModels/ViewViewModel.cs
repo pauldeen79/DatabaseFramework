@@ -13,4 +13,7 @@ public class ViewViewModel : DatabaseSchemaGeneratorViewModelBase<View>, INameCo
 
     public CodeGenerationHeaderModel CodeGenerationHeaders
         => new CodeGenerationHeaderModel(GetModel(), Settings.CreateCodeGenerationHeader);
+
+    public INameContainerBuilder ToBuilder()
+        => GetModel().ToBuilder();
 }

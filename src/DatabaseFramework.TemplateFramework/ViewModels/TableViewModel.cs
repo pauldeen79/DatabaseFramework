@@ -31,4 +31,7 @@ public class TableViewModel : DatabaseSchemaGeneratorViewModelBase<Table>, IName
 
     public CodeGenerationHeaderModel CodeGenerationHeaders
         => new CodeGenerationHeaderModel(GetModel(), Settings.CreateCodeGenerationHeader);
+
+    public INameContainerBuilder ToBuilder()
+        => GetModel().ToBuilder();
 }

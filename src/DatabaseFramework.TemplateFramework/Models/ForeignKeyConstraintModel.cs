@@ -15,4 +15,9 @@ public class ForeignKeyConstraintModel : INameContainer
     public Table Table { get; }
 
     public string Name => ForeignKeyConstraint.Name;
+
+    public INameContainerBuilder ToBuilder()
+    {
+        return ((INameContainer)ForeignKeyConstraint).ToBuilder();
+    }
 }

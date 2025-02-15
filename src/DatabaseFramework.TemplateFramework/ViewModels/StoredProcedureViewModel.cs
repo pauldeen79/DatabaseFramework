@@ -16,4 +16,7 @@ public class StoredProcedureViewModel : DatabaseSchemaGeneratorViewModelBase<Sto
 
     public IReadOnlyCollection<SqlStatementBase> Statements
         => GetModel().Statements;
+
+    public INameContainerBuilder ToBuilder()
+        => GetModel().ToBuilder();
 }
