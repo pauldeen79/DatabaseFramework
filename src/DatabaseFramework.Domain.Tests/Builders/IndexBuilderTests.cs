@@ -2,7 +2,7 @@
 
 public class IndexBuilderTests
 {
-    private IndexBuilder CreateSut() => new IndexBuilder();
+    private static IndexBuilder CreateSut() => new IndexBuilder();
 
     [Fact]
     public void Can_Validate_Recursively()
@@ -15,7 +15,7 @@ public class IndexBuilderTests
         var success = sut.TryValidate(validationResults);
 
         // Assert
-        success.Should().BeFalse();
-        validationResults.Should().HaveCount(2); //both the validation errors in Index and IndexField
+        success.ShouldBeFalse();
+        validationResults.Count.ShouldBe(2); //both the validation errors in Index and IndexField
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace DatabaseFramework.TemplateFramework.Tests;
+namespace DatabaseFramework.TemplateFramework.Tests;
 
 public sealed class IntegrationTests : TestBase, IDisposable
 {
@@ -51,9 +51,9 @@ public sealed class IntegrationTests : TestBase, IDisposable
         var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
-        result.Status.Should().Be(ResultStatus.Ok);
-        GenerationEnvironment.Builder.Contents.Should().ContainSingle();
-        GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"/****** Object:  Table [dbo].[MyTable] ******/
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.ShouldHaveSingleItem();
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"/****** Object:  Table [dbo].[MyTable] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -80,9 +80,9 @@ GO
         var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
-        result.Status.Should().Be(ResultStatus.Ok);
-        GenerationEnvironment.Builder.Contents.Should().ContainSingle();
-        GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"/****** Object:  Table [dbo].[Table1] ******/
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.ShouldHaveSingleItem();
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"/****** Object:  Table [dbo].[Table1] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -135,9 +135,9 @@ GO
         var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
-        result.Status.Should().Be(ResultStatus.Ok);
-        GenerationEnvironment.Builder.Contents.Should().ContainSingle();
-        GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.ShouldHaveSingleItem();
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
@@ -165,9 +165,9 @@ GO
         var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
-        result.Status.Should().Be(ResultStatus.Ok);
-        GenerationEnvironment.Builder.Contents.Should().ContainSingle();
-        GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.ShouldHaveSingleItem();
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
@@ -197,9 +197,9 @@ GO
         var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
-        result.Status.Should().Be(ResultStatus.Ok);
-        GenerationEnvironment.Builder.Contents.Should().ContainSingle();
-        GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.ShouldHaveSingleItem();
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
@@ -230,9 +230,9 @@ GO
         var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
-        result.Status.Should().Be(ResultStatus.Ok);
-        GenerationEnvironment.Builder.Contents.Should().ContainSingle();
-        GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.ShouldHaveSingleItem();
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
@@ -270,9 +270,9 @@ GO
         var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
-        result.Status.Should().Be(ResultStatus.Ok);
-        GenerationEnvironment.Builder.Contents.Should().ContainSingle();
-        GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.ShouldHaveSingleItem();
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
@@ -304,9 +304,9 @@ GO
         var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
-        result.Status.Should().Be(ResultStatus.Ok);
-        GenerationEnvironment.Builder.Contents.Should().ContainSingle();
-        GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"/****** Object:  Table [dbo].[Table1] ******/
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.ShouldHaveSingleItem();
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"/****** Object:  Table [dbo].[Table1] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -339,9 +339,9 @@ GO
         var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
-        result.Status.Should().Be(ResultStatus.Ok);
-        GenerationEnvironment.Builder.Contents.Should().ContainSingle();
-        GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.ShouldHaveSingleItem();
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
@@ -371,9 +371,9 @@ GO
         var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
-        result.Status.Should().Be(ResultStatus.Ok);
-        GenerationEnvironment.Builder.Contents.Should().ContainSingle();
-        GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.ShouldHaveSingleItem();
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
@@ -400,9 +400,9 @@ GO
         var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
-        result.Status.Should().Be(ResultStatus.Ok);
-        GenerationEnvironment.Builder.Contents.Should().ContainSingle();
-        GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.ShouldHaveSingleItem();
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
@@ -437,9 +437,9 @@ GO
         var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
-        result.Status.Should().Be(ResultStatus.Ok);
-        GenerationEnvironment.Builder.Contents.Should().ContainSingle();
-        GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"/****** Object:  Table [dbo].[Table1] ******/
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.ShouldHaveSingleItem();
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"/****** Object:  Table [dbo].[Table1] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -476,9 +476,9 @@ GO
         var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
-        result.Status.Should().Be(ResultStatus.Ok);
-        GenerationEnvironment.Builder.Contents.Should().ContainSingle();
-        GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.ShouldHaveSingleItem();
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
@@ -506,9 +506,9 @@ GO
         var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
-        result.Status.Should().Be(ResultStatus.Ok);
-        GenerationEnvironment.Builder.Contents.Should().ContainSingle();
-        GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"SET ANSI_NULLS ON
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.ShouldHaveSingleItem();
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
@@ -555,9 +555,9 @@ GO
         var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
-        result.Status.Should().Be(ResultStatus.Ok);
-        GenerationEnvironment.Builder.Contents.Should().HaveCount(3);
-        GenerationEnvironment.Builder.Contents.First().Builder.ToString().Should().Be(@"/****** Object:  Table [dbo].[MyTable] ******/
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.Count().ShouldBe(3);
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"/****** Object:  Table [dbo].[MyTable] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -571,7 +571,7 @@ GO
 SET ANSI_PADDING OFF
 GO
 ");
-        GenerationEnvironment.Builder.Contents.ElementAt(1).Builder.ToString().Should().Be(@"/****** Object:  Stored procedure [dbo].[usp_Test] ******/
+        GenerationEnvironment.Builder.Contents.ElementAt(1).Builder.ToString().ShouldBe(@"/****** Object:  Stored procedure [dbo].[usp_Test] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -586,7 +586,7 @@ BEGIN
 END
 GO
 ");
-        GenerationEnvironment.Builder.Contents.Last().Builder.ToString().Should().Be(@"/****** Object:  View [dbo].[View1] ******/
+        GenerationEnvironment.Builder.Contents.Last().Builder.ToString().ShouldBe(@"/****** Object:  View [dbo].[View1] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON

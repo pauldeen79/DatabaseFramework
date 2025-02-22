@@ -1,4 +1,4 @@
-﻿namespace DatabaseFramework.Domain.Tests;
+namespace DatabaseFramework.Domain.Tests;
 
 public class StoredProcedureTests
 {
@@ -19,6 +19,6 @@ public class StoredProcedureTests
         var storedProcedure = builder.Build();
 
         // Assert
-        storedProcedure.Name.Should().Be("usp_MyProc");
+        storedProcedure.Name.ShouldBe("usp_MyProc");
     }
 }

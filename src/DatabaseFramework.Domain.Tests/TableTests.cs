@@ -9,9 +9,9 @@ public class TableTests
         var tableBuilder = new TableBuilder().WithName("MyTable");
 
         // Act & Assert
-        tableBuilder.Invoking(x => x.Build())
-                    .Should().Throw<ValidationException>()
-                    .WithMessage("The field Fields must be a collection type with a minimum length of '1'.");
+        Action a = () => tableBuilder.Build();
+        a.ShouldThrow<ValidationException>()
+         .Message.ShouldBe("The field Fields must be a collection type with a minimum length of '1'.");
     }
 
     [Fact]
@@ -26,6 +26,6 @@ public class TableTests
         var table = builder.Build();
 
         // Asert
-        table.Name.Should().Be("MyTable");
+        table.Name.ShouldBe("MyTable");
     }
 }
