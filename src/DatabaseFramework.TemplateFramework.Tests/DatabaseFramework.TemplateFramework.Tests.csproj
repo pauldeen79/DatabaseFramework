@@ -33,7 +33,4 @@
   <ItemGroup>
     <ProjectReference Include="..\DatabaseFramework.TemplateFramework\DatabaseFramework.TemplateFramework.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Using Include="Xunit" />
-  </ItemGroup>
 </Project>
