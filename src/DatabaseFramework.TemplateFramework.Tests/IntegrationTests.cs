@@ -1,4 +1,4 @@
-namespace DatabaseFramework.TemplateFramework.Tests;
+﻿namespace DatabaseFramework.TemplateFramework.Tests;
 
 public sealed class IntegrationTests : TestBase, IDisposable
 {
@@ -48,7 +48,7 @@ public sealed class IntegrationTests : TestBase, IDisposable
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableCodeGenerationProvider>();
 
         // Act
-        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         result.Status.ShouldBe(ResultStatus.Ok);
@@ -77,7 +77,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TablesCodeGenerationProvider>();
 
         // Act
-        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         result.Status.ShouldBe(ResultStatus.Ok);
@@ -132,7 +132,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithVarcharAndNumericFieldsCodeGenerationProvider>();
 
         // Act
-        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         result.Status.ShouldBe(ResultStatus.Ok);
@@ -162,7 +162,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithCheckConstraintsOnFieldLevelCodeGenerationProvider>();
 
         // Act
-        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         result.Status.ShouldBe(ResultStatus.Ok);
@@ -194,7 +194,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithCheckConstraintsOnTableLevelCodeGenerationProvider>();
 
         // Act
-        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         result.Status.ShouldBe(ResultStatus.Ok);
@@ -227,7 +227,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithIndexesCodeGenerationProvider>();
 
         // Act
-        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         result.Status.ShouldBe(ResultStatus.Ok);
@@ -267,7 +267,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithPrimaryKeyConstraintCodeGenerationProvider>();
 
         // Act
-        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         result.Status.ShouldBe(ResultStatus.Ok);
@@ -301,7 +301,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithUniqueConstraintCodeGenerationProvider>();
 
         // Act
-        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         result.Status.ShouldBe(ResultStatus.Ok);
@@ -336,7 +336,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithDefaultValueConstraintCodeGenerationProvider>();
 
         // Act
-        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         result.Status.ShouldBe(ResultStatus.Ok);
@@ -368,7 +368,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<StoredProcedureContainingStatementsCodeGenerationProvider>();
 
         // Act
-        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         result.Status.ShouldBe(ResultStatus.Ok);
@@ -397,7 +397,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithForeignKeyConstraintCodeGenerationProvider>();
 
         // Act
-        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         result.Status.ShouldBe(ResultStatus.Ok);
@@ -434,7 +434,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithCascadeForeignKeyConstraintCodeGenerationProvider>();
 
         // Act
-        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         result.Status.ShouldBe(ResultStatus.Ok);
@@ -473,7 +473,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithIdentityFieldCodeGenerationProvider>();
 
         // Act
-        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         result.Status.ShouldBe(ResultStatus.Ok);
@@ -503,7 +503,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<ViewCodeGenerationProvider>();
 
         // Act
-        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         result.Status.ShouldBe(ResultStatus.Ok);
@@ -552,7 +552,7 @@ GO
         var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<MultipleFilesCodeGenerationProvider>();
 
         // Act
-        var result = await engine.Generate(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
 
         // Assert
         result.Status.ShouldBe(ResultStatus.Ok);
@@ -627,7 +627,7 @@ GO
 
     private sealed class TableCodeGenerationProvider : TestCodeGenerationProviderBase
     {
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder()
                 .WithName("MyTable")
@@ -638,7 +638,7 @@ GO
 
     private sealed class TablesCodeGenerationProvider : TestCodeGenerationProviderBase
     {
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields(new TableFieldBuilder().WithName("Field").WithType(SqlFieldType.Int)).Build(),
             new TableBuilder().WithName("Table2").AddFields(new TableFieldBuilder().WithName("Field").WithType(SqlFieldType.Int)).Build(),
@@ -650,7 +650,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -665,7 +665,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -680,7 +680,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -698,7 +698,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -723,7 +723,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -742,7 +742,7 @@ GO
 
     private sealed class TableWithUniqueConstraintCodeGenerationProvider : TestCodeGenerationProviderBase
     {
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -763,7 +763,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -781,7 +781,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new StoredProcedureBuilder().WithName("usp_Test").AddParameters
             (
@@ -799,7 +799,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -823,7 +823,7 @@ GO
 
     private sealed class TableWithCascadeForeignKeyConstraintCodeGenerationProvider : TestCodeGenerationProviderBase
     {
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -849,7 +849,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -864,7 +864,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new ViewBuilder().WithName("View1")
                 .WithDefinition(@"SELECT
@@ -896,7 +896,7 @@ ORDER BY
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithGenerateMultipleFiles().Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModel(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder()
                 .WithName("MyTable")

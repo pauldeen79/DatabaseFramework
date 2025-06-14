@@ -7,7 +7,7 @@ public class CoreEntities : DatabaseFrameworkCSharpClassBase
     {
     }
 
-    public override Task<Result<IEnumerable<TypeBase>>> GetModel(CancellationToken cancellationToken) => GetEntities(GetCoreModels(), Constants.Namespaces.Entities);
+    public override Task<Result<IEnumerable<TypeBase>>> GetModelAsync(CancellationToken cancellationToken) => GetEntitiesAsync(GetCoreModelsAsync(), Constants.Namespaces.Entities);
 
     public override string Path => "DatabaseFramework.Domain";
 }

@@ -3,7 +3,7 @@
 public abstract class DatabaseObjectTemplateBase<T> : DatabaseSchemaGeneratorBase<T>, IMultipleContentBuilderTemplate, IBuilderTemplate<StringBuilder>
     where T : DatabaseSchemaGeneratorViewModelBase, INameContainer
 {
-    public async Task<Result> Render(IMultipleContentBuilder<StringBuilder> builder, CancellationToken cancellationToken)
+    public async Task<Result> RenderAsync(IMultipleContentBuilder<StringBuilder> builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -30,7 +30,7 @@ public abstract class DatabaseObjectTemplateBase<T> : DatabaseSchemaGeneratorBas
         return await RenderDatabaseObject(generationEnvironment.Builder, cancellationToken);
     }
 
-    public async Task<Result> Render(StringBuilder builder, CancellationToken cancellationToken)
+    public async Task<Result> RenderAsync(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);

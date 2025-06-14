@@ -2,7 +2,7 @@
 
 public sealed class DatabaseSchemaGenerator : DatabaseSchemaGeneratorBase<DatabaseSchemaGeneratorViewModel>, IMultipleContentBuilderTemplate, IBuilderTemplate<StringBuilder>
 {
-    public async Task<Result> Render(IMultipleContentBuilder<StringBuilder> builder, CancellationToken cancellationToken)
+    public async Task<Result> RenderAsync(IMultipleContentBuilder<StringBuilder> builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -17,10 +17,10 @@ public sealed class DatabaseSchemaGenerator : DatabaseSchemaGeneratorBase<Databa
             generationEnvironment = new StringBuilderEnvironment(singleStringBuilder);
         }
 
-        return await RenderSchemaHierarchy(generationEnvironment, cancellationToken).ConfigureAwait(false);
+        return await RenderSchemaHierarchyAsync(generationEnvironment, cancellationToken).ConfigureAwait(false);
     }
 
-    public async Task<Result> Render(StringBuilder builder, CancellationToken cancellationToken)
+    public async Task<Result> RenderAsync(StringBuilder builder, CancellationToken cancellationToken)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -30,10 +30,10 @@ public sealed class DatabaseSchemaGenerator : DatabaseSchemaGeneratorBase<Databa
             return Result.NotSupported("Can't generate multiple files, because the generation environment has a single StringBuilder instance");
         }
 
-        return await RenderSchemaHierarchy(new StringBuilderEnvironment(builder), cancellationToken).ConfigureAwait(false);
+        return await RenderSchemaHierarchyAsync(new StringBuilderEnvironment(builder), cancellationToken).ConfigureAwait(false);
     }
 
-    private async Task<Result> RenderSchemaHierarchy(IGenerationEnvironment generationEnvironment, CancellationToken cancellationToken)
+    private async Task<Result> RenderSchemaHierarchyAsync(IGenerationEnvironment generationEnvironment, CancellationToken cancellationToken)
     {
         foreach (var schema in Model!.Schemas)
         {

@@ -23,6 +23,6 @@ public abstract class DatabaseFrameworkCSharpClassBase : CsharpClassGeneratorPip
     protected override bool GenerateMultipleFiles => false;
     protected override bool EnableGlobalUsings => true;
 
-    protected Task<Result<IEnumerable<TypeBase>>> GetTemplateFrameworkModels()
-        => GetNonCoreModels($"{CodeGenerationRootNamespace}.Models.TemplateFramework");
+    protected Task<Result<IEnumerable<TypeBase>>> GetTemplateFrameworkModelsAsync()
+        => GetNonCoreModelsAsync($"{CodeGenerationRootNamespace}.Models.TemplateFramework");
 }

@@ -7,7 +7,7 @@ public class AbstractBuilders : DatabaseFrameworkCSharpClassBase
     {
     }
 
-    public override Task<Result<IEnumerable<TypeBase>>> GetModel(CancellationToken cancellationToken) => GetBuilders(GetAbstractModels(), Constants.Namespaces.Builders, Constants.Namespaces.Entities);
+    public override Task<Result<IEnumerable<TypeBase>>> GetModelAsync(CancellationToken cancellationToken) => GetBuildersAsync(GetAbstractModelsAsync(), Constants.Namespaces.Builders, Constants.Namespaces.Entities);
 
     public override string Path => "DatabaseFramework.Domain/Builders";
 

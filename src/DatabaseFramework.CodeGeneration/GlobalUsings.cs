@@ -12,7 +12,7 @@ global using ClassFramework.TemplateFramework.Extensions;
 global using CrossCutting.Common;
 global using CrossCutting.Common.DataAnnotations;
 global using CrossCutting.Common.Results;
-global using CrossCutting.Utilities.Parsers.Extensions;
+global using CrossCutting.Utilities.ExpressionEvaluator.Extensions;
 global using CsharpExpressionDumper.Core.Extensions;
 global using DatabaseFramework.CodeGeneration.CodeGenerationProviders;
 global using DatabaseFramework.CodeGeneration.Models;
