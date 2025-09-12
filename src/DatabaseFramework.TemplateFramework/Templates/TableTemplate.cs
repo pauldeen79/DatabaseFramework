@@ -8,7 +8,7 @@ public sealed class TableTemplate : DatabaseObjectTemplateBase<TableViewModel>
         Guard.IsNotNull(Model);
 
         return await (await RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder, cancellationToken).ConfigureAwait(false))
-            .OnSuccess(async () =>
+            .OnSuccessAsync(async () =>
             {
                 builder.AppendLine(@$"SET ANSI_NULLS ON
 GO
@@ -24,7 +24,7 @@ CREATE TABLE [{Model.Schema}].[{Model.Name}](");
                     .Concat(Model.CheckConstraints.Cast<object>());
 
                 return await (await RenderChildTemplatesByModel(fieldsAndPrimaryKeyConstraints, builder, cancellationToken).ConfigureAwait(false))
-                    .OnSuccess(async () =>
+                    .OnSuccessAsync(async () =>
                     {
                         builder.AppendLine(@$") ON [{Model.FileGroupName}]
 GO
@@ -32,7 +32,7 @@ SET ANSI_PADDING OFF
 GO");
 
                         return await (await RenderChildTemplatesByModel(Model.Indexes, builder, cancellationToken).ConfigureAwait(false))
-                            .OnSuccess(async () =>
+                            .OnSuccessAsync(async () =>
                             {
                                 return await RenderChildTemplatesByModel(Model.DefaultValueConstraints, builder, cancellationToken).ConfigureAwait(false);
                             }).ConfigureAwait(false);

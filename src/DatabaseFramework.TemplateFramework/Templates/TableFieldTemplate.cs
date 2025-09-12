@@ -10,7 +10,7 @@ public class TableFieldTemplate : DatabaseSchemaGeneratorBase<TableFieldViewMode
         builder.Append($"\t[{Model.Name}] ");
 
         return await (await RenderChildTemplateByModel(Model.NonViewField, builder, cancellationToken).ConfigureAwait(false))
-            .OnSuccess(async () =>
+            .OnSuccessAsync(async () =>
             {
                 builder.Append($"{Model.Identity} {Model.NullOrNotNull}");
 
@@ -20,7 +20,7 @@ public class TableFieldTemplate : DatabaseSchemaGeneratorBase<TableFieldViewMode
                 }
 
                 return await (await RenderChildTemplatesByModel(Model.CheckConstraints, builder, cancellationToken).ConfigureAwait(false))
-                    .OnSuccess(() =>
+                    .OnSuccessAsync(() =>
                     {
                         if (!Model.IsLastTableField)
                         {

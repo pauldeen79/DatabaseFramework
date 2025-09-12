@@ -8,12 +8,12 @@ public class ForeignKeyConstraintTemplate : DatabaseSchemaGeneratorBase<ForeignK
         Guard.IsNotNull(Model);
 
         return await (await RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder, cancellationToken).ConfigureAwait(false))
-            .OnSuccess(async () =>
+            .OnSuccessAsync(async () =>
             {
                 builder.Append($"ALTER TABLE [{Model.Schema}].[{Model.TableEntityName}]  WITH CHECK ADD  CONSTRAINT [{Model.Name}] FOREIGN KEY(");
 
                 return await (await RenderChildTemplatesByModel(Model.LocalFields, builder, cancellationToken).ConfigureAwait(false))
-                    .OnSuccess(async () =>
+                    .OnSuccessAsync(async () =>
                     {
                         builder.AppendLine(")");
                         builder.Append($"REFERENCES [{Model.Schema}].[{Model.ForeignTableName}] (");

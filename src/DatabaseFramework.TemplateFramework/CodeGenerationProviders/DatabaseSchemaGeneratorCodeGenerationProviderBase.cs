@@ -17,14 +17,14 @@ public abstract class DatabaseSchemaGeneratorCodeGenerationProviderBase : ICodeG
 
     public async Task<Result<object?>> CreateModelAsync(CancellationToken cancellationToken)
     {
-        var modelResult = await GetModelAsync(cancellationToken).ConfigureAwait(false);
+        var modelResult = (await GetModelAsync(cancellationToken).ConfigureAwait(false)).EnsureValue();
         if (!modelResult.IsSuccessful())
         {
             return modelResult.TryCast<object?>();
         }
         return Result.Success<object?>(new DatabaseSchemaGeneratorViewModel
         {
-            Model = modelResult.Value,
+            Model = modelResult.Value!,
             Settings = Settings
             //Context is filled in base class, on the property setter of Context (propagated to Model)
         });

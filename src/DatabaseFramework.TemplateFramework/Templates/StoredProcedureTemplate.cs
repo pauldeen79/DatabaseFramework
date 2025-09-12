@@ -8,7 +8,7 @@ public class StoredProcedureTemplate : DatabaseObjectTemplateBase<StoredProcedur
         Guard.IsNotNull(Model);
 
         return await (await RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder, cancellationToken).ConfigureAwait(false))
-            .OnSuccess(async () =>
+            .OnSuccessAsync(async () =>
             {
                 builder.AppendLine(@$"SET ANSI_NULLS ON
 GO
@@ -17,13 +17,13 @@ GO
 CREATE PROCEDURE [{Model.Schema}].[{Model.Name}]");
 
                 return await (await RenderChildTemplatesByModel(Model.Parameters, builder, cancellationToken).ConfigureAwait(false))
-                    .OnSuccess(async () =>
+                    .OnSuccessAsync(async () =>
                     {
                         builder.AppendLine(@"AS
 BEGIN");
 
                         return await (await RenderChildTemplatesByModel(Model.Statements, builder, cancellationToken).ConfigureAwait(false))
-                        .OnSuccess(() =>
+                        .OnSuccessAsync(() =>
                         {
                             builder.AppendLine(@"END
 GO");

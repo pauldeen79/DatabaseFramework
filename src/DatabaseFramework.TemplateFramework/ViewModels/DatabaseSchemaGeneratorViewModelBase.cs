@@ -19,7 +19,7 @@ public abstract class DatabaseSchemaGeneratorViewModelBase : IDatabaseSchemaGene
 
 public abstract class DatabaseSchemaGeneratorViewModelBase<TModel> : DatabaseSchemaGeneratorViewModelBase, IModelContainer<TModel>, ITemplateContextContainer
 {
-    public TModel? Model { get; set; }
+    public TModel Model { get; set; } = default!;
     public ITemplateContext Context { get; set; } = default!; // will always be injected in OnSetContext method
 
     protected ITemplateContext GetContext()

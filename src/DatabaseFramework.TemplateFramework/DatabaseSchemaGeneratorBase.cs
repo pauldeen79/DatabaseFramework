@@ -19,7 +19,7 @@ public abstract class DatabaseSchemaGeneratorBase<TModel> : TemplateBase, IModel
         }
     }
 
-    public TModel? Model { get; set; }
+    public TModel Model { get; set; } = default!;
 
     protected async Task<Result> RenderChildTemplateByModel(object model, StringBuilder builder, CancellationToken cancellationToken)
         => await RenderChildTemplateByModel(model, new StringBuilderEnvironment(builder), cancellationToken).ConfigureAwait(false);
