@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public class AbstractEntities : DatabaseFrameworkCSharpClassBase
 {
-    public AbstractEntities(IPipelineService pipelineService) : base(pipelineService)
+    public AbstractEntities(ICommandService commandService) : base(commandService)
     {
     }
 

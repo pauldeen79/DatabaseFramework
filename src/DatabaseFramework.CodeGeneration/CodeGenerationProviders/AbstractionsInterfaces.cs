@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public class AbstractionsInterfaces : DatabaseFrameworkCSharpClassBase
 {
-    public AbstractionsInterfaces(IPipelineService pipelineService) : base(pipelineService)
+    public AbstractionsInterfaces(ICommandService commandService) : base(commandService)
     {
     }
 

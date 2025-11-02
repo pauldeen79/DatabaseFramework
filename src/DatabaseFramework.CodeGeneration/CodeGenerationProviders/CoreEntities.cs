@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public class CoreEntities : DatabaseFrameworkCSharpClassBase
 {
-    public CoreEntities(IPipelineService pipelineService) : base(pipelineService)
+    public CoreEntities(ICommandService commandService) : base(commandService)
     {
     }
 

@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public class TemplateFrameworkBuilders : DatabaseFrameworkCSharpClassBase
 {
-    public TemplateFrameworkBuilders(IPipelineService pipelineService) : base(pipelineService)
+    public TemplateFrameworkBuilders(ICommandService commandService) : base(commandService)
     {
     }
 

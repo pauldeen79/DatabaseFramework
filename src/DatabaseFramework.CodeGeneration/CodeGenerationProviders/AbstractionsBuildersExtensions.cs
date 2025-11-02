@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public class AbstractionsBuildersExtensions : DatabaseFrameworkCSharpClassBase
 {
-    public AbstractionsBuildersExtensions(IPipelineService pipelineService) : base(pipelineService)
+    public AbstractionsBuildersExtensions(ICommandService commandService) : base(commandService)
     {
     }
 

@@ -631,7 +631,10 @@ GO
         [
             new TableBuilder()
                 .WithName("MyTable")
-                .AddFields(new TableFieldBuilder().WithName("MyField").WithType(SqlFieldType.VarChar).WithStringLength(32))
+                .AddFields(new TableFieldBuilder()
+                    .WithName("MyField")
+                    .WithType(SqlFieldType.VarChar)
+                    .WithStringLength(32))
                 .Build()
         ]));
     }

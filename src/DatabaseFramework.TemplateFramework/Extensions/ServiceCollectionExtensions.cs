@@ -40,6 +40,5 @@ public static class ServiceCollectionExtensions
             .AddChildTemplate<TableFieldTemplate>(typeof(TableField))
             .AddChildTemplate<UniqueConstraintFieldTemplate>(typeof(UniqueConstraintField))
             .AddChildTemplate<UniqueConstraintTemplate>(typeof(UniqueConstraint))
-            .AddChildTemplate<ViewTemplate>(typeof(View))
-            ;
+            .AddChildTemplate<ViewTemplate>(typeof(View));
 }

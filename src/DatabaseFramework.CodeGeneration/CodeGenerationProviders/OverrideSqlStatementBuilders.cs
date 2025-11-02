@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public class OverrideSqlStatementBuilders : DatabaseFrameworkCSharpClassBase
 {
-    public OverrideSqlStatementBuilders(IPipelineService pipelineService) : base(pipelineService)
+    public OverrideSqlStatementBuilders(ICommandService commandService) : base(commandService)
     {
     }
 

@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public class AbstractBuilders : DatabaseFrameworkCSharpClassBase
 {
-    public AbstractBuilders(IPipelineService pipelineService) : base(pipelineService)
+    public AbstractBuilders(ICommandService commandService) : base(commandService)
     {
     }
 

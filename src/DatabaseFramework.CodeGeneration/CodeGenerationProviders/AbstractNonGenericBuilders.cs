@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public class AbstractNonGenericBuilders : DatabaseFrameworkCSharpClassBase
 {
-    public AbstractNonGenericBuilders(IPipelineService pipelineService) : base(pipelineService)
+    public AbstractNonGenericBuilders(ICommandService commandService) : base(commandService)
     {
     }
 

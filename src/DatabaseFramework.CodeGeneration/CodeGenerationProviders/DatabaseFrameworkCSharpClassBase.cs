@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public abstract class DatabaseFrameworkCSharpClassBase : CsharpClassGeneratorPipelineCodeGenerationProviderBase
 {
-    protected DatabaseFrameworkCSharpClassBase(IPipelineService pipelineService) : base(pipelineService)
+    protected DatabaseFrameworkCSharpClassBase(ICommandService commandService) : base(commandService)
     {
     }
 

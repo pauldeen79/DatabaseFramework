@@ -1,4 +1,4 @@
-global using System.Globalization;
+﻿global using System.Globalization;
 global using System.Text;
 global using AutoFixture;
 global using AutoFixture.AutoNSubstitute;
@@ -12,9 +12,9 @@ global using DatabaseFramework.Domain.Domains;
 global using DatabaseFramework.TemplateFramework.Builders;
 global using DatabaseFramework.TemplateFramework.CodeGenerationProviders;
 global using DatabaseFramework.TemplateFramework.Extensions;
-global using Shouldly;
 global using Microsoft.Extensions.DependencyInjection;
 global using NSubstitute;
+global using Shouldly;
 global using TemplateFramework.Abstractions;
 global using TemplateFramework.Abstractions.CodeGeneration;
 global using TemplateFramework.Abstractions.Extensions;

@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public class TemplateFrameworkEntities : DatabaseFrameworkCSharpClassBase
 {
-    public TemplateFrameworkEntities(IPipelineService pipelineService) : base(pipelineService)
+    public TemplateFrameworkEntities(ICommandService commandService) : base(commandService)
     {
     }
 

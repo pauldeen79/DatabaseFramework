@@ -3,7 +3,7 @@
 [ExcludeFromCodeCoverage]
 public class OverrideSqlStatementEntities : DatabaseFrameworkCSharpClassBase
 {
-    public OverrideSqlStatementEntities(IPipelineService pipelineService) : base(pipelineService)
+    public OverrideSqlStatementEntities(ICommandService commandService) : base(commandService)
     {
     }
 
