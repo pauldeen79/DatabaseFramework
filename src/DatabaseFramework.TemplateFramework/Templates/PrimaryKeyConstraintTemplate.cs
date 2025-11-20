@@ -2,14 +2,14 @@
 
 public class PrimaryKeyConstraintTemplate : DatabaseSchemaGeneratorBase<PrimaryKeyConstraintViewModel>, IBuilderTemplate<StringBuilder>
 {
-    public async Task<Result> RenderAsync(StringBuilder builder, CancellationToken cancellationToken)
+    public async Task<Result> RenderAsync(StringBuilder builder, CancellationToken token)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
         builder.AppendLine($" CONSTRAINT [{Model.Name}] PRIMARY KEY CLUSTERED");
         builder.AppendLine("(");
-        return (await RenderChildTemplatesByModel(Model.Fields, builder, cancellationToken).ConfigureAwait(false))
+        return (await RenderChildTemplatesByModel(Model.Fields, builder, token).ConfigureAwait(false))
             .OnSuccess(() =>  builder.AppendLine($") ON [{Model.FileGroupName}]"));
     }
 }

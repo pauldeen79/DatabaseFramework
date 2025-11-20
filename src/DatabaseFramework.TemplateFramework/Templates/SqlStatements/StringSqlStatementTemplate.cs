@@ -2,7 +2,7 @@
 
 public class StringSqlStatementTemplate : DatabaseSchemaGeneratorBase<StringSqlStatementViewModel>, IBuilderTemplate<StringBuilder>
 {
-    public Task<Result> RenderAsync(StringBuilder builder, CancellationToken cancellationToken)
+    public Task<Result> RenderAsync(StringBuilder builder, CancellationToken token)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);

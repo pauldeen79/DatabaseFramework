@@ -2,14 +2,14 @@
 
 public class TableFieldTemplate : DatabaseSchemaGeneratorBase<TableFieldViewModel>, IBuilderTemplate<StringBuilder>
 {
-    public async Task<Result> RenderAsync(StringBuilder builder, CancellationToken cancellationToken)
+    public async Task<Result> RenderAsync(StringBuilder builder, CancellationToken token)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
         builder.Append($"\t[{Model.Name}] ");
 
-        return await (await RenderChildTemplateByModel(Model.NonViewField, builder, cancellationToken).ConfigureAwait(false))
+        return await (await RenderChildTemplateByModel(Model.NonViewField, builder, token).ConfigureAwait(false))
             .OnSuccessAsync(async () =>
             {
                 builder.Append($"{Model.Identity} {Model.NullOrNotNull}");
@@ -19,7 +19,7 @@ public class TableFieldTemplate : DatabaseSchemaGeneratorBase<TableFieldViewMode
                     builder.AppendLine();
                 }
 
-                return await (await RenderChildTemplatesByModel(Model.CheckConstraints, builder, cancellationToken).ConfigureAwait(false))
+                return await (await RenderChildTemplatesByModel(Model.CheckConstraints, builder, token).ConfigureAwait(false))
                     .OnSuccessAsync(() =>
                     {
                         if (!Model.IsLastTableField)

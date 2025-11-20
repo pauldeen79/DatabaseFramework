@@ -7,7 +7,8 @@ public class CoreBuilders : DatabaseFrameworkCSharpClassBase
     {
     }
 
-    public override Task<Result<IEnumerable<TypeBase>>> GetModelAsync(CancellationToken cancellationToken) => GetBuildersAsync(GetCoreModelsAsync(), Constants.Namespaces.Builders, Constants.Namespaces.Entities);
+    public override Task<Result<IEnumerable<TypeBase>>> GetModelAsync(CancellationToken token)
+        => GetBuildersAsync(GetCoreModelsAsync(), Constants.Namespaces.Builders, Constants.Namespaces.Entities);
 
     public override string Path => "DatabaseFramework.Domain/Builders";
 

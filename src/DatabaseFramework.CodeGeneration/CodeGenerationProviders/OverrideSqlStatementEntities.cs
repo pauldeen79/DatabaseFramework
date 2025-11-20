@@ -12,6 +12,6 @@ public class OverrideSqlStatementEntities : DatabaseFrameworkCSharpClassBase
     protected override bool EnableEntityInheritance => true;
     protected override Task<Result<TypeBase>> GetBaseClassAsync() => CreateBaseClassAsync(typeof(ISqlStatementBase), Constants.Namespaces.Entities);
 
-    public override Task<Result<IEnumerable<TypeBase>>> GetModelAsync(CancellationToken cancellationToken)
+    public override Task<Result<IEnumerable<TypeBase>>> GetModelAsync(CancellationToken token)
         => GetEntitiesAsync(GetOverrideModelsAsync(typeof(ISqlStatementBase)), "DatabaseFramework.Domain.SqlStatements");
 }

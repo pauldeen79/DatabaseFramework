@@ -2,7 +2,7 @@
 
 public class DefaultValueConstraintTemplate : DatabaseSchemaGeneratorBase<DefaultValueConstraintViewModel>, IBuilderTemplate<StringBuilder>
 {
-    public Task<Result> RenderAsync(StringBuilder builder, CancellationToken cancellationToken)
+    public Task<Result> RenderAsync(StringBuilder builder, CancellationToken token)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);

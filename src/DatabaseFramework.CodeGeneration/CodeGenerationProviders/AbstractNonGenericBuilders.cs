@@ -7,7 +7,8 @@ public class AbstractNonGenericBuilders : DatabaseFrameworkCSharpClassBase
     {
     }
 
-    public override Task<Result<IEnumerable<TypeBase>>> GetModelAsync(CancellationToken cancellationToken) => GetNonGenericBuildersAsync(GetAbstractModelsAsync(), "DatabaseFramework.Domain.Builders", "DatabaseFramework.Domain");
+    public override Task<Result<IEnumerable<TypeBase>>> GetModelAsync(CancellationToken token)
+        => GetNonGenericBuildersAsync(GetAbstractModelsAsync(), "DatabaseFramework.Domain.Builders", "DatabaseFramework.Domain");
 
     public override string Path => "DatabaseFramework.Domain/Builders";
 

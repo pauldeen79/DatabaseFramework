@@ -7,7 +7,7 @@ public abstract class DatabaseSchemaGeneratorCodeGenerationProviderBase : ICodeG
     public abstract string LastGeneratedFilesFilename { get; }
     public abstract Encoding Encoding { get; }
 
-    public Task<Result<object?>> CreateAdditionalParametersAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success(default(object?)));
+    public Task<Result<object?>> CreateAdditionalParametersAsync(CancellationToken token) => Task.FromResult(Result.Success(default(object?)));
 
     public Type GetGeneratorType() => typeof(DatabaseSchemaGenerator);
 
@@ -15,9 +15,9 @@ public abstract class DatabaseSchemaGeneratorCodeGenerationProviderBase : ICodeG
 
     public abstract DatabaseSchemaGeneratorSettings Settings { get; }
 
-    public async Task<Result<object?>> CreateModelAsync(CancellationToken cancellationToken)
+    public async Task<Result<object?>> CreateModelAsync(CancellationToken token)
     {
-        var modelResult = (await GetModelAsync(cancellationToken).ConfigureAwait(false)).EnsureValue();
+        var modelResult = (await GetModelAsync(token).ConfigureAwait(false)).EnsureValue();
         if (!modelResult.IsSuccessful())
         {
             return modelResult.TryCast<object?>();

@@ -7,7 +7,8 @@ public class AbstractEntities : DatabaseFrameworkCSharpClassBase
     {
     }
 
-    public override Task<Result<IEnumerable<TypeBase>>> GetModelAsync(CancellationToken cancellationToken) => GetEntitiesAsync(GetAbstractModelsAsync(), Constants.Namespaces.Entities);
+    public override Task<Result<IEnumerable<TypeBase>>> GetModelAsync(CancellationToken token)
+        => GetEntitiesAsync(GetAbstractModelsAsync(), Constants.Namespaces.Entities);
 
     public override string Path => "DatabaseFramework.Domain";
 

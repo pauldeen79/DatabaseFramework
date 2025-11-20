@@ -2,7 +2,7 @@
 
 public class IndexTemplate : DatabaseSchemaGeneratorBase<IndexViewModel>, IBuilderTemplate<StringBuilder>
 {
-    public async Task<Result> RenderAsync(StringBuilder builder, CancellationToken cancellationToken)
+    public async Task<Result> RenderAsync(StringBuilder builder, CancellationToken token)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
@@ -10,7 +10,7 @@ public class IndexTemplate : DatabaseSchemaGeneratorBase<IndexViewModel>, IBuild
         builder.AppendLine($"CREATE {Model.Unique}NONCLUSTERED INDEX [{Model.Name}] ON [{Model.Schema}].[{Model.TableEntityName}]");
         builder.AppendLine("(");
 
-        return (await RenderChildTemplatesByModel(Model.Fields, builder, cancellationToken).ConfigureAwait(false))
+        return (await RenderChildTemplatesByModel(Model.Fields, builder, token).ConfigureAwait(false))
             .OnSuccess(() =>
             {
                 builder.AppendLine($") ON [{Model.FileGroupName}]");

@@ -13,6 +13,6 @@ public class OverrideSqlStatementBuilders : DatabaseFrameworkCSharpClassBase
     protected override bool CreateAsObservable => true;
     protected override Task<Result<TypeBase>> GetBaseClassAsync() => CreateBaseClassAsync(typeof(ISqlStatementBase), Constants.Namespaces.Entities);
 
-    public override Task<Result<IEnumerable<TypeBase>>> GetModelAsync(CancellationToken cancellationToken)
+    public override Task<Result<IEnumerable<TypeBase>>> GetModelAsync(CancellationToken token)
         => GetBuildersAsync(GetOverrideModelsAsync(typeof(ISqlStatementBase)), "DatabaseFramework.Domain.Builders.SqlStatements", "DatabaseFramework.Domain.SqlStatements");
 }
