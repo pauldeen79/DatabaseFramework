@@ -6,6 +6,7 @@ public class CheckConstraintTemplate : DatabaseSchemaGeneratorBase<CheckConstrai
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
+        Guard.IsNotNull(Context);
 
         builder.AppendLine($"    CONSTRAINT [{Model.Name}]");
         builder.Append($"    CHECK ({Model.Expression})");
