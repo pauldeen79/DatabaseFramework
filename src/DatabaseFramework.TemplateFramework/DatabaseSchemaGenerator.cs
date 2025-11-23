@@ -33,11 +33,11 @@ public sealed class DatabaseSchemaGenerator : DatabaseSchemaGeneratorBase<Databa
         return await RenderSchemaHierarchyAsync(new StringBuilderEnvironment(builder), token).ConfigureAwait(false);
     }
 
-    private async Task<Result> RenderSchemaHierarchyAsync(IGenerationEnvironment generationEnvironment, CancellationToken cancellationToken)
+    private async Task<Result> RenderSchemaHierarchyAsync(IGenerationEnvironment generationEnvironment, CancellationToken token)
     {
         foreach (var schema in Model!.Schemas)
         {
-            var result = await RenderChildTemplatesByModel(Model.GetDatabaseObjects(schema), generationEnvironment, cancellationToken);
+            var result = await RenderChildTemplatesByModel(Model.GetDatabaseObjects(schema), generationEnvironment, token);
             if (!result.IsSuccessful())
             {
                 return result;

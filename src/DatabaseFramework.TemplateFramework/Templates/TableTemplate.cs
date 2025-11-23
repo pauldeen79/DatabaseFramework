@@ -2,12 +2,12 @@
 
 public sealed class TableTemplate : DatabaseObjectTemplateBase<TableViewModel>
 {
-    protected override async Task<Result> RenderDatabaseObject(StringBuilder builder, CancellationToken cancellationToken)
+    protected override async Task<Result> RenderDatabaseObject(StringBuilder builder, CancellationToken token)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
-        return await (await RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder, cancellationToken).ConfigureAwait(false))
+        return await (await RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder, token).ConfigureAwait(false))
             .OnSuccessAsync(async () =>
             {
                 builder.AppendLine(@$"SET ANSI_NULLS ON
@@ -23,7 +23,7 @@ CREATE TABLE [{Model.Schema}].[{Model.Name}](");
                     .Concat(Model.UniqueConstraints.Cast<object>())
                     .Concat(Model.CheckConstraints.Cast<object>());
 
-                return await (await RenderChildTemplatesByModel(fieldsAndPrimaryKeyConstraints, builder, cancellationToken).ConfigureAwait(false))
+                return await (await RenderChildTemplatesByModel(fieldsAndPrimaryKeyConstraints, builder, token).ConfigureAwait(false))
                     .OnSuccessAsync(async () =>
                     {
                         builder.AppendLine(@$") ON [{Model.FileGroupName}]
@@ -31,10 +31,10 @@ GO
 SET ANSI_PADDING OFF
 GO");
 
-                        return await (await RenderChildTemplatesByModel(Model.Indexes, builder, cancellationToken).ConfigureAwait(false))
+                        return await (await RenderChildTemplatesByModel(Model.Indexes, builder, token).ConfigureAwait(false))
                             .OnSuccessAsync(async () =>
                             {
-                                return await RenderChildTemplatesByModel(Model.DefaultValueConstraints, builder, cancellationToken).ConfigureAwait(false);
+                                return await RenderChildTemplatesByModel(Model.DefaultValueConstraints, builder, token).ConfigureAwait(false);
                             }).ConfigureAwait(false);
                     }).ConfigureAwait(false);
             }).ConfigureAwait(false);

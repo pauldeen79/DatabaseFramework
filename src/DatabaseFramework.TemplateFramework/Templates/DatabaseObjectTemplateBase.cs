@@ -38,5 +38,5 @@ public abstract class DatabaseObjectTemplateBase<T> : DatabaseSchemaGeneratorBas
         return await RenderDatabaseObject(builder, token);
     }
 
-    protected abstract Task<Result> RenderDatabaseObject(StringBuilder builder, CancellationToken cancellationToken);
+    protected abstract Task<Result> RenderDatabaseObject(StringBuilder builder, CancellationToken token);
 }

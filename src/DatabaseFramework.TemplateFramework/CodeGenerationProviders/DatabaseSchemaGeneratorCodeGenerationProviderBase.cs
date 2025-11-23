@@ -11,7 +11,7 @@ public abstract class DatabaseSchemaGeneratorCodeGenerationProviderBase : ICodeG
 
     public Type GetGeneratorType() => typeof(DatabaseSchemaGenerator);
 
-    public abstract Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken);
+    public abstract Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token);
 
     public abstract DatabaseSchemaGeneratorSettings Settings { get; }
 

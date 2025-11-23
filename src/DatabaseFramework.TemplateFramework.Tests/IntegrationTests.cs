@@ -627,7 +627,7 @@ GO
 
     private sealed class TableCodeGenerationProvider : TestCodeGenerationProviderBase
     {
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder()
                 .WithName("MyTable")
@@ -641,7 +641,7 @@ GO
 
     private sealed class TablesCodeGenerationProvider : TestCodeGenerationProviderBase
     {
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields(new TableFieldBuilder().WithName("Field").WithType(SqlFieldType.Int)).Build(),
             new TableBuilder().WithName("Table2").AddFields(new TableFieldBuilder().WithName("Field").WithType(SqlFieldType.Int)).Build(),
@@ -653,7 +653,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -668,7 +668,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -683,7 +683,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -701,7 +701,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -726,7 +726,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -745,7 +745,7 @@ GO
 
     private sealed class TableWithUniqueConstraintCodeGenerationProvider : TestCodeGenerationProviderBase
     {
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -766,7 +766,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -784,7 +784,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new StoredProcedureBuilder().WithName("usp_Test").AddParameters
             (
@@ -802,7 +802,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -826,7 +826,7 @@ GO
 
     private sealed class TableWithCascadeForeignKeyConstraintCodeGenerationProvider : TestCodeGenerationProviderBase
     {
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -852,7 +852,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder().WithName("Table1").AddFields
             (
@@ -867,7 +867,7 @@ GO
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithCreateCodeGenerationHeader(false).Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new ViewBuilder().WithName("View1")
                 .WithDefinition(@"SELECT
@@ -899,7 +899,7 @@ ORDER BY
     {
         public override DatabaseSchemaGeneratorSettings Settings => base.Settings.ToBuilder().WithGenerateMultipleFiles().Build();
 
-        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken cancellationToken) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
         [
             new TableBuilder()
                 .WithName("MyTable")

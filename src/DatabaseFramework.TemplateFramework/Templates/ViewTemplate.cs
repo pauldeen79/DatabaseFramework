@@ -2,12 +2,12 @@
 
 public class ViewTemplate : DatabaseObjectTemplateBase<ViewViewModel>
 {
-    protected override async Task<Result> RenderDatabaseObject(StringBuilder builder, CancellationToken cancellationToken)
+    protected override async Task<Result> RenderDatabaseObject(StringBuilder builder, CancellationToken token)
     {
         Guard.IsNotNull(builder);
         Guard.IsNotNull(Model);
 
-        return (await RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder, cancellationToken).ConfigureAwait(false))
+        return (await RenderChildTemplateByModel(Model.CodeGenerationHeaders, builder, token).ConfigureAwait(false))
             .OnSuccess(() =>
             {
                 builder.AppendLine(@$"SET ANSI_NULLS ON
