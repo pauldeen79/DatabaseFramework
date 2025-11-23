@@ -3,5 +3,5 @@
 public class StringSqlStatementViewModel : DatabaseSchemaGeneratorViewModelBase<StringSqlStatement>
 {
     public string Statement
-        => GetModel().Statement;
+        => Model.Statement;
 }

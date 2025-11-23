@@ -3,11 +3,11 @@
 public class UniqueConstraintViewModel : DatabaseSchemaGeneratorViewModelBase<UniqueConstraint>
 {
     public string Name
-        => GetModel().Name.FormatAsDatabaseIdentifier();
+        => Model.Name.FormatAsDatabaseIdentifier();
 
     public string FileGroupName
-        => GetModel().FileGroupName.WhenNullOrEmpty("PRIMARY").FormatAsDatabaseIdentifier();
+        => Model.FileGroupName.WhenNullOrEmpty("PRIMARY").FormatAsDatabaseIdentifier();
 
     public IReadOnlyCollection<UniqueConstraintField> Fields
-        => GetModel().Fields;
+        => Model.Fields;
 }

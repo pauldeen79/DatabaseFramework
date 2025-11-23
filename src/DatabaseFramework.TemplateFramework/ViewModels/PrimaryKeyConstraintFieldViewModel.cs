@@ -3,10 +3,10 @@
 public class PrimaryKeyConstraintFieldViewModel : DatabaseSchemaGeneratorViewModelBase<PrimaryKeyConstraintField>
 {
     public string Name
-        => GetModel().Name.FormatAsDatabaseIdentifier();
+        => Model.Name.FormatAsDatabaseIdentifier();
 
     public string Direction
-        => GetModel().IsDescending
+        => Model.IsDescending
             ? "DESC"
             : "ASC";
 

@@ -3,17 +3,17 @@
 public class ViewViewModel : DatabaseSchemaGeneratorViewModelBase<View>, INameContainer
 {
     public string Schema
-        => GetModel().Schema.FormatAsDatabaseIdentifier();
+        => Model.Schema.FormatAsDatabaseIdentifier();
 
     public string Name
-        => GetModel().Name.FormatAsDatabaseIdentifier();
+        => Model.Name.FormatAsDatabaseIdentifier();
 
     public string Definition
-        => GetModel().Definition;
+        => Model.Definition;
 
     public CodeGenerationHeaderModel CodeGenerationHeaders
-        => new CodeGenerationHeaderModel(GetModel(), Settings.CreateCodeGenerationHeader);
+        => new CodeGenerationHeaderModel(Model, Settings.CreateCodeGenerationHeader);
 
     public INameContainerBuilder ToBuilder()
-        => GetModel().ToBuilder();
+        => Model.ToBuilder();
 }

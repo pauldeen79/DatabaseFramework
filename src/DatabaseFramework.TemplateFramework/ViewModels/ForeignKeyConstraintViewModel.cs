@@ -3,29 +3,29 @@
 public class ForeignKeyConstraintViewModel : DatabaseSchemaGeneratorViewModelBase<ForeignKeyConstraintModel>
 {
     public string Name
-        => GetModel().ForeignKeyConstraint.Name.FormatAsDatabaseIdentifier();
+        => Model.ForeignKeyConstraint.Name.FormatAsDatabaseIdentifier();
 
     public string ForeignTableName
-        => GetModel().ForeignKeyConstraint.ForeignTableName.FormatAsDatabaseIdentifier();
+        => Model.ForeignKeyConstraint.ForeignTableName.FormatAsDatabaseIdentifier();
 
     public string CascadeUpdate
-        => GetModel().ForeignKeyConstraint.CascadeUpdate.ToSql();
+        => Model.ForeignKeyConstraint.CascadeUpdate.ToSql();
 
     public string CascadeDelete
-        => GetModel().ForeignKeyConstraint.CascadeDelete.ToSql();
+        => Model.ForeignKeyConstraint.CascadeDelete.ToSql();
 
     public IReadOnlyCollection<ForeignKeyConstraintField> LocalFields
-        => GetModel().ForeignKeyConstraint.LocalFields;
+        => Model.ForeignKeyConstraint.LocalFields;
 
     public IReadOnlyCollection<ForeignKeyConstraintField> ForeignFields
-        => GetModel().ForeignKeyConstraint.ForeignFields;
+        => Model.ForeignKeyConstraint.ForeignFields;
 
     public string TableEntityName
-        => GetModel().Table.Name.FormatAsDatabaseIdentifier();
+        => Model.Table.Name.FormatAsDatabaseIdentifier();
 
     public string Schema
-        => GetModel().Table.Schema.FormatAsDatabaseIdentifier();
+        => Model.Table.Schema.FormatAsDatabaseIdentifier();
 
     public CodeGenerationHeaderModel CodeGenerationHeaders
-        => new CodeGenerationHeaderModel(GetModel().ForeignKeyConstraint, Settings.CreateCodeGenerationHeader);
+        => new CodeGenerationHeaderModel(Model.ForeignKeyConstraint, Settings.CreateCodeGenerationHeader);
 }

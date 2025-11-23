@@ -7,11 +7,11 @@ public class DefaultValueConstraintViewModel : DatabaseSchemaGeneratorViewModelB
             .Name.FormatAsDatabaseIdentifier();
 
     public string Name
-        => GetModel().Name.FormatAsDatabaseIdentifier();
+        => Model.Name.FormatAsDatabaseIdentifier();
 
     public string DefaultValue
-        => GetModel().DefaultValue;
+        => Model.DefaultValue;
 
     public string FieldName
-        => GetModel().FieldName.FormatAsDatabaseIdentifier();
+        => Model.FieldName.FormatAsDatabaseIdentifier();
 }

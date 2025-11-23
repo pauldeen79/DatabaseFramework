@@ -3,7 +3,7 @@
 public class UniqueConstraintFieldViewModel : DatabaseSchemaGeneratorViewModelBase<UniqueConstraintField>
 {
     public string Name
-        => GetModel().Name.FormatAsDatabaseIdentifier();
+        => Model.Name.FormatAsDatabaseIdentifier();
 
     public bool IsLastUniqueConstraintField
         => Context.IsLastIteration

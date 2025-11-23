@@ -3,20 +3,20 @@
 public class StoredProcedureViewModel : DatabaseSchemaGeneratorViewModelBase<StoredProcedure>, INameContainer
 {
     public string Schema
-        => GetModel().Schema.FormatAsDatabaseIdentifier();
+        => Model.Schema.FormatAsDatabaseIdentifier();
 
     public string Name
-        => GetModel().Name.FormatAsDatabaseIdentifier();
+        => Model.Name.FormatAsDatabaseIdentifier();
 
     public CodeGenerationHeaderModel CodeGenerationHeaders
-        => new CodeGenerationHeaderModel(GetModel(), Settings.CreateCodeGenerationHeader);
+        => new CodeGenerationHeaderModel(Model, Settings.CreateCodeGenerationHeader);
 
     public IReadOnlyCollection<StoredProcedureParameter> Parameters
-        => GetModel().Parameters;
+        => Model.Parameters;
 
     public IReadOnlyCollection<SqlStatementBase> Statements
-        => GetModel().Statements;
+        => Model.Statements;
 
     public INameContainerBuilder ToBuilder()
-        => GetModel().ToBuilder();
+        => Model.ToBuilder();
 }

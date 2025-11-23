@@ -3,11 +3,11 @@
 public class PrimaryKeyConstraintViewModel : DatabaseSchemaGeneratorViewModelBase<PrimaryKeyConstraint>
 {
     public string Name
-        => GetModel().Name.FormatAsDatabaseIdentifier();
+        => Model.Name.FormatAsDatabaseIdentifier();
 
     public string FileGroupName
-        => GetModel().FileGroupName.WhenNullOrEmpty("PRIMARY").FormatAsDatabaseIdentifier();
+        => Model.FileGroupName.WhenNullOrEmpty("PRIMARY").FormatAsDatabaseIdentifier();
 
     public IReadOnlyCollection<PrimaryKeyConstraintField> Fields
-        => GetModel().Fields;
+        => Model.Fields;
 }

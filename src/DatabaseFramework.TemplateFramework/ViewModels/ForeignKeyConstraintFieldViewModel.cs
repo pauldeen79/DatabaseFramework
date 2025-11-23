@@ -3,7 +3,7 @@
 public class ForeignKeyConstraintFieldViewModel : DatabaseSchemaGeneratorViewModelBase<ForeignKeyConstraintField>
 {
     public string Name
-        => GetModel().Name.FormatAsDatabaseIdentifier();
+        => Model.Name.FormatAsDatabaseIdentifier();
 
     public bool IsLastForeignKeyConstraintField
         => Context.IsLastIteration

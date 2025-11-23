@@ -3,10 +3,10 @@
 public class CheckConstraintViewModel : DatabaseSchemaGeneratorViewModelBase<CheckConstraint>
 {
     public string Name
-        => GetModel().Name.FormatAsDatabaseIdentifier();
+        => Model.Name.FormatAsDatabaseIdentifier();
 
     public string Expression
-        => GetModel().Expression;
+        => Model.Expression;
 
     public bool IsLastCheckConstraint
         => Context.IsLastIteration

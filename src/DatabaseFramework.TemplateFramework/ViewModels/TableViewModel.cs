@@ -3,35 +3,35 @@
 public class TableViewModel : DatabaseSchemaGeneratorViewModelBase<Table>, INameContainer
 {
     public string Schema
-        => GetModel().Schema.FormatAsDatabaseIdentifier();
+        => Model.Schema.FormatAsDatabaseIdentifier();
 
     public string Name
-        => GetModel().Name.FormatAsDatabaseIdentifier();
+        => Model.Name.FormatAsDatabaseIdentifier();
 
     public string FileGroupName
-        => GetModel().FileGroupName.WhenNullOrEmpty("PRIMARY").FormatAsDatabaseIdentifier();
+        => Model.FileGroupName.WhenNullOrEmpty("PRIMARY").FormatAsDatabaseIdentifier();
 
     public IReadOnlyCollection<TableField> Fields
-        => GetModel().Fields;
+        => Model.Fields;
 
     public IReadOnlyCollection<PrimaryKeyConstraint> PrimaryKeyConstraints
-        => GetModel().PrimaryKeyConstraints;
+        => Model.PrimaryKeyConstraints;
 
     public IReadOnlyCollection<UniqueConstraint> UniqueConstraints
-        => GetModel().UniqueConstraints;
+        => Model.UniqueConstraints;
 
     public IReadOnlyCollection<CheckConstraint> CheckConstraints
-        => GetModel().CheckConstraints;
+        => Model.CheckConstraints;
 
     public IReadOnlyCollection<Domain.Index> Indexes
-        => GetModel().Indexes;
+        => Model.Indexes;
 
     public IReadOnlyCollection<DefaultValueConstraint> DefaultValueConstraints
-        => GetModel().DefaultValueConstraints;
+        => Model.DefaultValueConstraints;
 
     public CodeGenerationHeaderModel CodeGenerationHeaders
-        => new CodeGenerationHeaderModel(GetModel(), Settings.CreateCodeGenerationHeader);
+        => new CodeGenerationHeaderModel(Model, Settings.CreateCodeGenerationHeader);
 
     public INameContainerBuilder ToBuilder()
-        => GetModel().ToBuilder();
+        => Model.ToBuilder();
 }

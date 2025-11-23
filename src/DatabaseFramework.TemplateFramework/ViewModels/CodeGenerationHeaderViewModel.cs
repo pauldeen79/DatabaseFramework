@@ -3,14 +3,14 @@
 public class CodeGenerationHeaderViewModel : DatabaseSchemaGeneratorViewModelBase<CodeGenerationHeaderModel>
 {
     public bool CreateCodeGenerationHeader
-        => GetModel().CreateCodeGenerationHeader;
+        => Model.CreateCodeGenerationHeader;
 
     public string Name
-        => GetModel().Name.FormatAsDatabaseIdentifier();
+        => Model.Name.FormatAsDatabaseIdentifier();
 
     public string? Schema
-        => GetModel().Schema?.FormatAsDatabaseIdentifier();
+        => Model.Schema?.FormatAsDatabaseIdentifier();
 
     public string ObjectType
-        => GetModel().ObjectType;
+        => Model.ObjectType;
 }

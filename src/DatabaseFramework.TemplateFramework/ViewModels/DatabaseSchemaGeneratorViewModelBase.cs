@@ -22,19 +22,5 @@ public abstract class DatabaseSchemaGeneratorViewModelBase<TModel> : DatabaseSch
     public TModel Model { get; set; } = default!;
     public ITemplateContext Context { get; set; } = default!; // will always be injected in OnSetContext method
 
-    protected ITemplateContext GetContext()
-    {
-        Guard.IsNotNull(Context);
-
-        return Context;
-    }
-
-    protected TModel GetModel()
-    {
-        Guard.IsNotNull(Model);
-
-        return Model;
-    }
-
-    protected object? GetParentModel() => GetContext().ParentContext?.Model;
+    protected object? GetParentModel() => Context?.ParentContext?.Model;
 }

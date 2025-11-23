@@ -3,7 +3,7 @@
 public class DatabaseSchemaGeneratorViewModel : DatabaseSchemaGeneratorViewModelBase<IEnumerable<IDatabaseObject>>
 {
     public IOrderedEnumerable<IGrouping<string, IDatabaseObject>> Schemas
-        => GetModel().GroupBy(x => x.Schema).OrderBy(x => x.Key);
+        => Model.GroupBy(x => x.Schema).OrderBy(x => x.Key);
 
 #pragma warning disable S2325 // Methods and properties that don't access instance data should be static
     public IEnumerable<INameContainer> GetDatabaseObjects(IEnumerable<INameContainer> objects)

@@ -32,10 +32,7 @@ SET ANSI_PADDING OFF
 GO");
 
                         return await (await RenderChildTemplatesByModel(Model.Indexes, builder, token).ConfigureAwait(false))
-                            .OnSuccessAsync(async () =>
-                            {
-                                return await RenderChildTemplatesByModel(Model.DefaultValueConstraints, builder, token).ConfigureAwait(false);
-                            }).ConfigureAwait(false);
+                            .OnSuccessAsync(() => RenderChildTemplatesByModel(Model.DefaultValueConstraints, builder, token)).ConfigureAwait(false);
                     }).ConfigureAwait(false);
             }).ConfigureAwait(false);
     }

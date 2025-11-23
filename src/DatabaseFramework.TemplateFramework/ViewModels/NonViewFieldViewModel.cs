@@ -3,36 +3,36 @@
 public class NonViewFieldViewModel : DatabaseSchemaGeneratorViewModelBase<NonViewFieldModel>
 {
     public string Type
-        => GetModel().Value.Type.ToString().ToUpper(Settings.CultureInfo);
+        => Model.Value.Type.ToString().ToUpper(Settings.CultureInfo);
 
     public bool IsDatabaseStringType
-        => GetModel().Value.Type.IsDatabaseStringType();
+        => Model.Value.Type.IsDatabaseStringType();
 
     public bool IsNumeric
     {
         get
         {
-            var model = GetModel().Value;
+            var model = Model.Value;
             return model.NumericPrecision is not null
                 || model.NumericScale is not null;
         }
     }
 
     public string? NumericPrecision
-        => GetModel().Value.NumericPrecision?.ToString(Settings.CultureInfo);
+        => Model.Value.NumericPrecision?.ToString(Settings.CultureInfo);
 
     public string? NumericScale
-        => GetModel().Value.NumericScale?.ToString(Settings.CultureInfo);
+        => Model.Value.NumericScale?.ToString(Settings.CultureInfo);
 
     public string StringLength
-        => GetModel().Value.StringLength.GetValueOrDefault(32).ToString(Settings.CultureInfo);
+        => Model.Value.StringLength.GetValueOrDefault(32).ToString(Settings.CultureInfo);
 
     public bool HasStringCollation
-        => !string.IsNullOrEmpty(GetModel().Value.StringCollation);
+        => !string.IsNullOrEmpty(Model.Value.StringCollation);
 
     public string StringCollation
-        => GetModel().Value.StringCollation;
+        => Model.Value.StringCollation;
 
     public bool IsStringMaxLength
-        => GetModel().Value.IsStringMaxLength.GetValueOrDefault();
+        => Model.Value.IsStringMaxLength.GetValueOrDefault();
 }
