@@ -10,7 +10,7 @@
 #nullable enable
 namespace DatabaseFramework.Domain
 {
-    public abstract partial record SqlStatementBase
+    public abstract partial record SqlStatementBase : CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder>
     {
         protected SqlStatementBase()
         {

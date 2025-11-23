@@ -10,7 +10,7 @@
 #nullable enable
 namespace DatabaseFramework.Domain.Builders
 {
-    public abstract partial class SqlStatementBaseBuilder : System.ComponentModel.INotifyPropertyChanged
+    public abstract partial class SqlStatementBaseBuilder : System.ComponentModel.INotifyPropertyChanged, CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.SqlStatementBase>
     {
         public event System.ComponentModel.PropertyChangedEventHandler? PropertyChanged;
 

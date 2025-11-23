@@ -10,7 +10,7 @@
 #nullable enable
 namespace DatabaseFramework.Domain
 {
-    public partial record CheckConstraint : DatabaseFramework.Domain.Abstractions.INameContainer
+    public partial record CheckConstraint : DatabaseFramework.Domain.Abstractions.INameContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.CheckConstraintBuilder>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         public string Expression
@@ -41,12 +41,12 @@ namespace DatabaseFramework.Domain
             return new DatabaseFramework.Domain.Builders.CheckConstraintBuilder(this);
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder DatabaseFramework.Domain.Abstractions.INameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
     }
-    public partial record DefaultValueConstraint : DatabaseFramework.Domain.Abstractions.INameContainer
+    public partial record DefaultValueConstraint : DatabaseFramework.Domain.Abstractions.INameContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.DefaultValueConstraintBuilder>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         public string FieldName
@@ -84,12 +84,12 @@ namespace DatabaseFramework.Domain
             return new DatabaseFramework.Domain.Builders.DefaultValueConstraintBuilder(this);
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder DatabaseFramework.Domain.Abstractions.INameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
     }
-    public partial record ForeignKeyConstraint : DatabaseFramework.Domain.Abstractions.INameContainer
+    public partial record ForeignKeyConstraint : DatabaseFramework.Domain.Abstractions.INameContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.ForeignKeyConstraintBuilder>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
@@ -152,12 +152,12 @@ namespace DatabaseFramework.Domain
             return new DatabaseFramework.Domain.Builders.ForeignKeyConstraintBuilder(this);
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder DatabaseFramework.Domain.Abstractions.INameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
     }
-    public partial record ForeignKeyConstraintField : DatabaseFramework.Domain.Abstractions.INameContainer
+    public partial record ForeignKeyConstraintField : DatabaseFramework.Domain.Abstractions.INameContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.ForeignKeyConstraintFieldBuilder>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         public string Name
@@ -181,12 +181,12 @@ namespace DatabaseFramework.Domain
             return new DatabaseFramework.Domain.Builders.ForeignKeyConstraintFieldBuilder(this);
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder DatabaseFramework.Domain.Abstractions.INameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
     }
-    public partial record Index : DatabaseFramework.Domain.Abstractions.INameContainer, DatabaseFramework.Domain.Abstractions.IFileGroupNameContainer
+    public partial record Index : DatabaseFramework.Domain.Abstractions.INameContainer, DatabaseFramework.Domain.Abstractions.IFileGroupNameContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.IndexBuilder>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [CrossCutting.Common.DataAnnotations.MinCountAttribute(1)]
@@ -232,17 +232,17 @@ namespace DatabaseFramework.Domain
             return new DatabaseFramework.Domain.Builders.IndexBuilder(this);
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder DatabaseFramework.Domain.Abstractions.INameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.IFileGroupNameContainerBuilder DatabaseFramework.Domain.Abstractions.IFileGroupNameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.IFileGroupNameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.IFileGroupNameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
     }
-    public partial record IndexField : DatabaseFramework.Domain.Abstractions.INameContainer
+    public partial record IndexField : DatabaseFramework.Domain.Abstractions.INameContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.IndexFieldBuilder>
     {
         public bool IsDescending
         {
@@ -272,12 +272,12 @@ namespace DatabaseFramework.Domain
             return new DatabaseFramework.Domain.Builders.IndexFieldBuilder(this);
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder DatabaseFramework.Domain.Abstractions.INameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
     }
-    public partial record PrimaryKeyConstraint : DatabaseFramework.Domain.Abstractions.INameContainer, DatabaseFramework.Domain.Abstractions.IFileGroupNameContainer
+    public partial record PrimaryKeyConstraint : DatabaseFramework.Domain.Abstractions.INameContainer, DatabaseFramework.Domain.Abstractions.IFileGroupNameContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.PrimaryKeyConstraintBuilder>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [CrossCutting.Common.DataAnnotations.MinCountAttribute(1)]
@@ -317,17 +317,17 @@ namespace DatabaseFramework.Domain
             return new DatabaseFramework.Domain.Builders.PrimaryKeyConstraintBuilder(this);
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder DatabaseFramework.Domain.Abstractions.INameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.IFileGroupNameContainerBuilder DatabaseFramework.Domain.Abstractions.IFileGroupNameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.IFileGroupNameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.IFileGroupNameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
     }
-    public partial record PrimaryKeyConstraintField : DatabaseFramework.Domain.Abstractions.INameContainer
+    public partial record PrimaryKeyConstraintField : DatabaseFramework.Domain.Abstractions.INameContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.PrimaryKeyConstraintFieldBuilder>
     {
         public bool IsDescending
         {
@@ -357,12 +357,12 @@ namespace DatabaseFramework.Domain
             return new DatabaseFramework.Domain.Builders.PrimaryKeyConstraintFieldBuilder(this);
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder DatabaseFramework.Domain.Abstractions.INameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
     }
-    public partial record StoredProcedure : DatabaseFramework.Domain.Abstractions.IDatabaseObject, DatabaseFramework.Domain.Abstractions.ISchemaContainer, DatabaseFramework.Domain.Abstractions.INameContainer
+    public partial record StoredProcedure : DatabaseFramework.Domain.Abstractions.IDatabaseObject, DatabaseFramework.Domain.Abstractions.ISchemaContainer, DatabaseFramework.Domain.Abstractions.INameContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.StoredProcedureBuilder>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
@@ -410,22 +410,22 @@ namespace DatabaseFramework.Domain
             return new DatabaseFramework.Domain.Builders.StoredProcedureBuilder(this);
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.IDatabaseObjectBuilder DatabaseFramework.Domain.Abstractions.IDatabaseObject.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.IDatabaseObjectBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.IDatabaseObjectBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder DatabaseFramework.Domain.Abstractions.ISchemaContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder DatabaseFramework.Domain.Abstractions.INameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
     }
-    public partial record StoredProcedureParameter : DatabaseFramework.Domain.Abstractions.INonViewField, DatabaseFramework.Domain.Abstractions.INameContainer
+    public partial record StoredProcedureParameter : DatabaseFramework.Domain.Abstractions.INonViewField, DatabaseFramework.Domain.Abstractions.INameContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.StoredProcedureParameterBuilder>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         public string DefaultValue
@@ -493,17 +493,17 @@ namespace DatabaseFramework.Domain
             return new DatabaseFramework.Domain.Builders.StoredProcedureParameterBuilder(this);
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INonViewFieldBuilder DatabaseFramework.Domain.Abstractions.INonViewField.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INonViewFieldBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INonViewFieldBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder DatabaseFramework.Domain.Abstractions.INameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
     }
-    public partial record Table : DatabaseFramework.Domain.Abstractions.IDatabaseObject, DatabaseFramework.Domain.Abstractions.ISchemaContainer, DatabaseFramework.Domain.Abstractions.INameContainer, DatabaseFramework.Domain.Abstractions.IFileGroupNameContainer, DatabaseFramework.Domain.Abstractions.ICheckConstraintContainer
+    public partial record Table : DatabaseFramework.Domain.Abstractions.IDatabaseObject, DatabaseFramework.Domain.Abstractions.ISchemaContainer, DatabaseFramework.Domain.Abstractions.INameContainer, DatabaseFramework.Domain.Abstractions.IFileGroupNameContainer, DatabaseFramework.Domain.Abstractions.ICheckConstraintContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.TableBuilder>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
@@ -599,32 +599,32 @@ namespace DatabaseFramework.Domain
             return new DatabaseFramework.Domain.Builders.TableBuilder(this);
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.IDatabaseObjectBuilder DatabaseFramework.Domain.Abstractions.IDatabaseObject.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.IDatabaseObjectBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.IDatabaseObjectBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder DatabaseFramework.Domain.Abstractions.ISchemaContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder DatabaseFramework.Domain.Abstractions.INameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.IFileGroupNameContainerBuilder DatabaseFramework.Domain.Abstractions.IFileGroupNameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.IFileGroupNameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.IFileGroupNameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.ICheckConstraintContainerBuilder DatabaseFramework.Domain.Abstractions.ICheckConstraintContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.ICheckConstraintContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.ICheckConstraintContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
     }
-    public partial record TableField : DatabaseFramework.Domain.Abstractions.INonViewField, DatabaseFramework.Domain.Abstractions.INameContainer, DatabaseFramework.Domain.Abstractions.ICheckConstraintContainer
+    public partial record TableField : DatabaseFramework.Domain.Abstractions.INonViewField, DatabaseFramework.Domain.Abstractions.INameContainer, DatabaseFramework.Domain.Abstractions.ICheckConstraintContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.TableFieldBuilder>
     {
         public bool IsIdentity
         {
@@ -705,22 +705,22 @@ namespace DatabaseFramework.Domain
             return new DatabaseFramework.Domain.Builders.TableFieldBuilder(this);
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INonViewFieldBuilder DatabaseFramework.Domain.Abstractions.INonViewField.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INonViewFieldBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INonViewFieldBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder DatabaseFramework.Domain.Abstractions.INameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.ICheckConstraintContainerBuilder DatabaseFramework.Domain.Abstractions.ICheckConstraintContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.ICheckConstraintContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.ICheckConstraintContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
     }
-    public partial record UniqueConstraint : DatabaseFramework.Domain.Abstractions.INameContainer, DatabaseFramework.Domain.Abstractions.IFileGroupNameContainer
+    public partial record UniqueConstraint : DatabaseFramework.Domain.Abstractions.INameContainer, DatabaseFramework.Domain.Abstractions.IFileGroupNameContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.UniqueConstraintBuilder>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
@@ -760,17 +760,17 @@ namespace DatabaseFramework.Domain
             return new DatabaseFramework.Domain.Builders.UniqueConstraintBuilder(this);
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder DatabaseFramework.Domain.Abstractions.INameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.IFileGroupNameContainerBuilder DatabaseFramework.Domain.Abstractions.IFileGroupNameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.IFileGroupNameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.IFileGroupNameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
     }
-    public partial record UniqueConstraintField : DatabaseFramework.Domain.Abstractions.INameContainer
+    public partial record UniqueConstraintField : DatabaseFramework.Domain.Abstractions.INameContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.UniqueConstraintFieldBuilder>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         public string Name
@@ -794,12 +794,12 @@ namespace DatabaseFramework.Domain
             return new DatabaseFramework.Domain.Builders.UniqueConstraintFieldBuilder(this);
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder DatabaseFramework.Domain.Abstractions.INameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
     }
-    public partial record View : DatabaseFramework.Domain.Abstractions.IDatabaseObject, DatabaseFramework.Domain.Abstractions.ISchemaContainer, DatabaseFramework.Domain.Abstractions.INameContainer
+    public partial record View : DatabaseFramework.Domain.Abstractions.IDatabaseObject, DatabaseFramework.Domain.Abstractions.ISchemaContainer, DatabaseFramework.Domain.Abstractions.INameContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.ViewBuilder>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         public string Definition
@@ -838,17 +838,17 @@ namespace DatabaseFramework.Domain
             return new DatabaseFramework.Domain.Builders.ViewBuilder(this);
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.IDatabaseObjectBuilder DatabaseFramework.Domain.Abstractions.IDatabaseObject.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.IDatabaseObjectBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.IDatabaseObjectBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder DatabaseFramework.Domain.Abstractions.ISchemaContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
 
-        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder DatabaseFramework.Domain.Abstractions.INameContainer.ToBuilder()
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }

@@ -10,7 +10,7 @@
 #nullable enable
 namespace DatabaseFramework.TemplateFramework
 {
-    public partial record DatabaseSchemaGeneratorSettings
+    public partial record DatabaseSchemaGeneratorSettings : CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.TemplateFramework.Builders.DatabaseSchemaGeneratorSettingsBuilder>
     {
         public bool RecurseOnDeleteGeneratedFiles
         {

@@ -22,6 +22,7 @@ public abstract class DatabaseFrameworkCSharpClassBase : CsharpClassGeneratorPip
     protected override bool CreateRecord => true;
     protected override bool GenerateMultipleFiles => false;
     protected override bool EnableGlobalUsings => true;
+    protected override bool UseCrossCuttingInterfaces => true;
 
     protected Task<Result<IEnumerable<TypeBase>>> GetTemplateFrameworkModelsAsync()
         => GetNonCoreModelsAsync($"{CodeGenerationRootNamespace}.Models.TemplateFramework");

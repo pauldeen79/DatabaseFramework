@@ -10,7 +10,7 @@
 #nullable enable
 namespace DatabaseFramework.TemplateFramework.Builders
 {
-    public partial class DatabaseSchemaGeneratorSettingsBuilder : System.ComponentModel.INotifyPropertyChanged
+    public partial class DatabaseSchemaGeneratorSettingsBuilder : System.ComponentModel.INotifyPropertyChanged, CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.TemplateFramework.DatabaseSchemaGeneratorSettings>
     {
         private bool _recurseOnDeleteGeneratedFiles;
 

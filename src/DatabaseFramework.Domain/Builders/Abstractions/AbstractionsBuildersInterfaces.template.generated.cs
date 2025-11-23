@@ -10,7 +10,7 @@
 #nullable enable
 namespace DatabaseFramework.Domain.Builders.Abstractions
 {
-    public partial interface ICheckConstraintContainerBuilder
+    public partial interface ICheckConstraintContainerBuilder : CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.Abstractions.ICheckConstraintContainer>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
@@ -19,14 +19,11 @@ namespace DatabaseFramework.Domain.Builders.Abstractions
             get;
             set;
         }
-
-        DatabaseFramework.Domain.Abstractions.ICheckConstraintContainer Build();
     }
-    public partial interface IDatabaseObjectBuilder : DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder, DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder
+    public partial interface IDatabaseObjectBuilder : DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder, DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder, CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.Abstractions.IDatabaseObject>
     {
-        new DatabaseFramework.Domain.Abstractions.IDatabaseObject Build();
     }
-    public partial interface IFileGroupNameContainerBuilder
+    public partial interface IFileGroupNameContainerBuilder : CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.Abstractions.IFileGroupNameContainer>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute(AllowEmptyStrings = true)]
         string FileGroupName
@@ -34,10 +31,8 @@ namespace DatabaseFramework.Domain.Builders.Abstractions
             get;
             set;
         }
-
-        DatabaseFramework.Domain.Abstractions.IFileGroupNameContainer Build();
     }
-    public partial interface INameContainerBuilder
+    public partial interface INameContainerBuilder : CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.Abstractions.INameContainer>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         string Name
@@ -45,10 +40,8 @@ namespace DatabaseFramework.Domain.Builders.Abstractions
             get;
             set;
         }
-
-        DatabaseFramework.Domain.Abstractions.INameContainer Build();
     }
-    public partial interface INonViewFieldBuilder : DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder
+    public partial interface INonViewFieldBuilder : DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder, CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.Abstractions.INonViewField>
     {
         DatabaseFramework.Domain.Domains.SqlFieldType Type
         {
@@ -86,10 +79,8 @@ namespace DatabaseFramework.Domain.Builders.Abstractions
             get;
             set;
         }
-
-        new DatabaseFramework.Domain.Abstractions.INonViewField Build();
     }
-    public partial interface ISchemaContainerBuilder
+    public partial interface ISchemaContainerBuilder : CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.Abstractions.ISchemaContainer>
     {
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [System.ComponentModel.DefaultValueAttribute(@"dbo")]
@@ -98,8 +89,6 @@ namespace DatabaseFramework.Domain.Builders.Abstractions
             get;
             set;
         }
-
-        DatabaseFramework.Domain.Abstractions.ISchemaContainer Build();
     }
 }
 #nullable disable

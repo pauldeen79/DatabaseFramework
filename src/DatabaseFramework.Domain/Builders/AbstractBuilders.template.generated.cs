@@ -10,7 +10,7 @@
 #nullable enable
 namespace DatabaseFramework.Domain.Builders
 {
-    public abstract partial class SqlStatementBaseBuilder<TBuilder, TEntity> : SqlStatementBaseBuilder
+    public abstract partial class SqlStatementBaseBuilder<TBuilder, TEntity> : SqlStatementBaseBuilder, CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.SqlStatementBase>
         where TEntity : DatabaseFramework.Domain.SqlStatementBase
         where TBuilder : SqlStatementBaseBuilder<TBuilder, TEntity>
     {
