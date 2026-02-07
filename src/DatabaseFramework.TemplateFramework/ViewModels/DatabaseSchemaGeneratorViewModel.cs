@@ -28,8 +28,9 @@ public class DatabaseSchemaGeneratorViewModel : DatabaseSchemaGeneratorViewModel
         {
             Table => 1,
             ForeignKeyConstraint => 2,
-            StoredProcedure => 3,
-            View => 4,
+            Trigger => 3,
+            StoredProcedure => 4,
+            View => 5,
             _ => 99
         }; // note that this order is backwards compatible with ModelFramework.Database :-)
 }

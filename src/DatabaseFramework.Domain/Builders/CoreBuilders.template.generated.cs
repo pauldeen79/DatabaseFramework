@@ -859,33 +859,17 @@ namespace DatabaseFramework.Domain.Builders
             PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
         }
     }
-    public partial class StoredProcedureBuilder : DatabaseFramework.Domain.Builders.Abstractions.IDatabaseObjectBuilder, DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder, DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder, System.ComponentModel.INotifyPropertyChanged, CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.StoredProcedure>
+    public partial class StoredProcedureBuilder : DatabaseFramework.Domain.Builders.Abstractions.IDatabaseObjectBuilder, DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder, DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder, DatabaseFramework.Domain.Builders.Abstractions.IStatementsContainerBuilder, System.ComponentModel.INotifyPropertyChanged, CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.StoredProcedure>
     {
-        private System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder> _statements;
-
         private System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.StoredProcedureParameterBuilder> _parameters;
 
         private string _schema;
 
         private string _name;
 
-        public event System.ComponentModel.PropertyChangedEventHandler? PropertyChanged;
+        private System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder> _statements;
 
-        [System.ComponentModel.DataAnnotations.RequiredAttribute]
-        [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
-        public System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder> Statements
-        {
-            get
-            {
-                return _statements;
-            }
-            set
-            {
-                bool hasChanged = !System.Collections.Generic.EqualityComparer<System.Collections.Generic.IReadOnlyCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder>>.Default.Equals(_statements!, value!);
-                _statements = value ?? throw new System.ArgumentNullException(nameof(value));
-                if (hasChanged) HandlePropertyChanged(nameof(Statements));
-            }
-        }
+        public event System.ComponentModel.PropertyChangedEventHandler? PropertyChanged;
 
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
@@ -934,21 +918,37 @@ namespace DatabaseFramework.Domain.Builders
             }
         }
 
+        [System.ComponentModel.DataAnnotations.RequiredAttribute]
+        [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
+        public System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder> Statements
+        {
+            get
+            {
+                return _statements;
+            }
+            set
+            {
+                bool hasChanged = !System.Collections.Generic.EqualityComparer<System.Collections.Generic.IReadOnlyCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder>>.Default.Equals(_statements!, value!);
+                _statements = value ?? throw new System.ArgumentNullException(nameof(value));
+                if (hasChanged) HandlePropertyChanged(nameof(Statements));
+            }
+        }
+
         public StoredProcedureBuilder(DatabaseFramework.Domain.StoredProcedure source)
         {
             if (source is null) throw new System.ArgumentNullException(nameof(source));
-            _statements = new System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder>();
             _parameters = new System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.StoredProcedureParameterBuilder>();
-            if (source.Statements is not null) foreach (var item in source.Statements.Select(x => x.ToBuilder())) _statements.Add(item);
+            _statements = new System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder>();
             if (source.Parameters is not null) foreach (var item in source.Parameters.Select(x => x.ToBuilder())) _parameters.Add(item);
             _schema = source.Schema;
             _name = source.Name;
+            if (source.Statements is not null) foreach (var item in source.Statements.Select(x => x.ToBuilder())) _statements.Add(item);
         }
 
         public StoredProcedureBuilder()
         {
-            _statements = new System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder>();
             _parameters = new System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.StoredProcedureParameterBuilder>();
+            _statements = new System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder>();
             _schema = @"dbo"!;
             _name = string.Empty;
             SetDefaultValues();
@@ -956,7 +956,7 @@ namespace DatabaseFramework.Domain.Builders
 
         public DatabaseFramework.Domain.StoredProcedure Build()
         {
-            return new DatabaseFramework.Domain.StoredProcedure(Statements.Select(x => x.Build()!).ToList().AsReadOnly(), Parameters.Select(x => x.Build()!).ToList().AsReadOnly(), Schema, Name);
+            return new DatabaseFramework.Domain.StoredProcedure(Parameters.Select(x => x.Build()!).ToList().AsReadOnly(), Schema, Name, Statements.Select(x => x.Build()!).ToList().AsReadOnly());
         }
 
         DatabaseFramework.Domain.Abstractions.IDatabaseObject CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.Abstractions.IDatabaseObject>.Build()
@@ -974,20 +974,12 @@ namespace DatabaseFramework.Domain.Builders
             return Build();
         }
 
+        DatabaseFramework.Domain.Abstractions.IStatementsContainer CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.Abstractions.IStatementsContainer>.Build()
+        {
+            return Build();
+        }
+
         partial void SetDefaultValues();
-
-        public DatabaseFramework.Domain.Builders.StoredProcedureBuilder AddStatements(System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder> statements)
-        {
-            if (statements is null) throw new System.ArgumentNullException(nameof(statements));
-            return AddStatements(statements.ToArray());
-        }
-
-        public DatabaseFramework.Domain.Builders.StoredProcedureBuilder AddStatements(params DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder[] statements)
-        {
-            if (statements is null) throw new System.ArgumentNullException(nameof(statements));
-            foreach (var item in statements) Statements.Add(item);
-            return this;
-        }
 
         public DatabaseFramework.Domain.Builders.StoredProcedureBuilder AddParameters(System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.Builders.StoredProcedureParameterBuilder> parameters)
         {
@@ -1769,6 +1761,166 @@ namespace DatabaseFramework.Domain.Builders
         }
 
         public static implicit operator DatabaseFramework.Domain.TableField(TableFieldBuilder builder)
+        {
+            return builder.Build();
+        }
+
+        protected void HandlePropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+    }
+    public partial class TriggerBuilder : DatabaseFramework.Domain.Builders.Abstractions.IDatabaseObjectBuilder, DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder, DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder, DatabaseFramework.Domain.Builders.Abstractions.IStatementsContainerBuilder, System.ComponentModel.INotifyPropertyChanged, CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.Trigger>
+    {
+        private DatabaseFramework.Domain.Domains.DatabaseOperation _databaseOperation;
+
+        private string _tableName;
+
+        private string _schema;
+
+        private string _name;
+
+        private System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder> _statements;
+
+        public event System.ComponentModel.PropertyChangedEventHandler? PropertyChanged;
+
+        public DatabaseFramework.Domain.Domains.DatabaseOperation DatabaseOperation
+        {
+            get
+            {
+                return _databaseOperation;
+            }
+            set
+            {
+                bool hasChanged = !System.Collections.Generic.EqualityComparer<DatabaseFramework.Domain.Domains.DatabaseOperation>.Default.Equals(_databaseOperation, value);
+                _databaseOperation = value;
+                if (hasChanged) HandlePropertyChanged(nameof(DatabaseOperation));
+            }
+        }
+
+        [System.ComponentModel.DataAnnotations.RequiredAttribute]
+        public string TableName
+        {
+            get
+            {
+                return _tableName;
+            }
+            set
+            {
+                bool hasChanged = !System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(_tableName!, value!);
+                _tableName = value ?? throw new System.ArgumentNullException(nameof(value));
+                if (hasChanged) HandlePropertyChanged(nameof(TableName));
+            }
+        }
+
+        [System.ComponentModel.DataAnnotations.RequiredAttribute]
+        [System.ComponentModel.DefaultValueAttribute(@"dbo")]
+        public string Schema
+        {
+            get
+            {
+                return _schema;
+            }
+            set
+            {
+                bool hasChanged = !System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(_schema!, value!);
+                _schema = value ?? throw new System.ArgumentNullException(nameof(value));
+                if (hasChanged) HandlePropertyChanged(nameof(Schema));
+            }
+        }
+
+        [System.ComponentModel.DataAnnotations.RequiredAttribute]
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                bool hasChanged = !System.Collections.Generic.EqualityComparer<System.String>.Default.Equals(_name!, value!);
+                _name = value ?? throw new System.ArgumentNullException(nameof(value));
+                if (hasChanged) HandlePropertyChanged(nameof(Name));
+            }
+        }
+
+        [System.ComponentModel.DataAnnotations.RequiredAttribute]
+        [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
+        public System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder> Statements
+        {
+            get
+            {
+                return _statements;
+            }
+            set
+            {
+                bool hasChanged = !System.Collections.Generic.EqualityComparer<System.Collections.Generic.IReadOnlyCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder>>.Default.Equals(_statements!, value!);
+                _statements = value ?? throw new System.ArgumentNullException(nameof(value));
+                if (hasChanged) HandlePropertyChanged(nameof(Statements));
+            }
+        }
+
+        public TriggerBuilder(DatabaseFramework.Domain.Trigger source)
+        {
+            if (source is null) throw new System.ArgumentNullException(nameof(source));
+            _statements = new System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder>();
+            _databaseOperation = source.DatabaseOperation;
+            _tableName = source.TableName;
+            _schema = source.Schema;
+            _name = source.Name;
+            if (source.Statements is not null) foreach (var item in source.Statements.Select(x => x.ToBuilder())) _statements.Add(item);
+        }
+
+        public TriggerBuilder()
+        {
+            _statements = new System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder>();
+            _tableName = string.Empty;
+            _schema = @"dbo"!;
+            _name = string.Empty;
+            SetDefaultValues();
+        }
+
+        public DatabaseFramework.Domain.Trigger Build()
+        {
+            return new DatabaseFramework.Domain.Trigger(DatabaseOperation, TableName, Schema, Name, Statements.Select(x => x.Build()!).ToList().AsReadOnly());
+        }
+
+        DatabaseFramework.Domain.Abstractions.IDatabaseObject CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.Abstractions.IDatabaseObject>.Build()
+        {
+            return Build();
+        }
+
+        DatabaseFramework.Domain.Abstractions.ISchemaContainer CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.Abstractions.ISchemaContainer>.Build()
+        {
+            return Build();
+        }
+
+        DatabaseFramework.Domain.Abstractions.INameContainer CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.Abstractions.INameContainer>.Build()
+        {
+            return Build();
+        }
+
+        DatabaseFramework.Domain.Abstractions.IStatementsContainer CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.Abstractions.IStatementsContainer>.Build()
+        {
+            return Build();
+        }
+
+        partial void SetDefaultValues();
+
+        public DatabaseFramework.Domain.Builders.TriggerBuilder WithDatabaseOperation(DatabaseFramework.Domain.Domains.DatabaseOperation databaseOperation)
+        {
+            DatabaseOperation = databaseOperation;
+            return this;
+        }
+
+        public DatabaseFramework.Domain.Builders.TriggerBuilder WithTableName(string tableName)
+        {
+            if (tableName is null) throw new System.ArgumentNullException(nameof(tableName));
+            TableName = tableName;
+            return this;
+        }
+
+        public static implicit operator DatabaseFramework.Domain.Trigger(TriggerBuilder builder)
         {
             return builder.Build();
         }

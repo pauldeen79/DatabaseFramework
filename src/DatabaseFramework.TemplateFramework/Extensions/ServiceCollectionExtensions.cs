@@ -20,6 +20,7 @@ public static class ServiceCollectionExtensions
             .AddTransient<IViewModel, StringSqlStatementViewModel>()
             .AddTransient<IViewModel, TableViewModel>()
             .AddTransient<IViewModel, TableFieldViewModel>()
+            .AddTransient<IViewModel, TriggerViewModel>()
             .AddTransient<IViewModel, UniqueConstraintFieldViewModel>()
             .AddTransient<IViewModel, UniqueConstraintViewModel>()
             .AddTransient<IViewModel, ViewViewModel>()
@@ -38,6 +39,7 @@ public static class ServiceCollectionExtensions
             .AddChildTemplate<StringSqlStatementTemplate>(typeof(StringSqlStatement))
             .AddChildTemplate<TableTemplate>(typeof(Table))
             .AddChildTemplate<TableFieldTemplate>(typeof(TableField))
+            .AddChildTemplate<TriggerTemplate>(typeof(Trigger))
             .AddChildTemplate<UniqueConstraintFieldTemplate>(typeof(UniqueConstraintField))
             .AddChildTemplate<UniqueConstraintTemplate>(typeof(UniqueConstraint))
             .AddChildTemplate<ViewTemplate>(typeof(View));

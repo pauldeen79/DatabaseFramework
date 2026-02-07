@@ -362,15 +362,8 @@ namespace DatabaseFramework.Domain
             return ToBuilder();
         }
     }
-    public partial record StoredProcedure : DatabaseFramework.Domain.Abstractions.IDatabaseObject, DatabaseFramework.Domain.Abstractions.ISchemaContainer, DatabaseFramework.Domain.Abstractions.INameContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.StoredProcedureBuilder>
+    public partial record StoredProcedure : DatabaseFramework.Domain.Abstractions.IDatabaseObject, DatabaseFramework.Domain.Abstractions.ISchemaContainer, DatabaseFramework.Domain.Abstractions.INameContainer, DatabaseFramework.Domain.Abstractions.IStatementsContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.StoredProcedureBuilder>
     {
-        [System.ComponentModel.DataAnnotations.RequiredAttribute]
-        [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
-        public System.Collections.Generic.IReadOnlyCollection<DatabaseFramework.Domain.SqlStatementBase> Statements
-        {
-            get;
-        }
-
         [System.ComponentModel.DataAnnotations.RequiredAttribute]
         [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
         public System.Collections.Generic.IReadOnlyCollection<DatabaseFramework.Domain.StoredProcedureParameter> Parameters
@@ -391,12 +384,19 @@ namespace DatabaseFramework.Domain
             get;
         }
 
-        public StoredProcedure(System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.SqlStatementBase> statements, System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.StoredProcedureParameter> parameters, string schema, string name)
+        [System.ComponentModel.DataAnnotations.RequiredAttribute]
+        [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
+        public System.Collections.Generic.IReadOnlyCollection<DatabaseFramework.Domain.SqlStatementBase> Statements
         {
-            this.Statements = statements is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.SqlStatementBase>(statements);
+            get;
+        }
+
+        public StoredProcedure(System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.StoredProcedureParameter> parameters, string schema, string name, System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.SqlStatementBase> statements)
+        {
             this.Parameters = parameters is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.StoredProcedureParameter>(parameters);
             this.Schema = schema;
             this.Name = name;
+            this.Statements = statements is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.SqlStatementBase>(statements);
             System.ComponentModel.DataAnnotations.Validator.ValidateObject(this, new System.ComponentModel.DataAnnotations.ValidationContext(this, null, null), true);
         }
 
@@ -421,6 +421,11 @@ namespace DatabaseFramework.Domain
         }
 
         DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
+        {
+            return ToBuilder();
+        }
+
+        DatabaseFramework.Domain.Builders.Abstractions.IStatementsContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.IStatementsContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }
@@ -716,6 +721,79 @@ namespace DatabaseFramework.Domain
         }
 
         DatabaseFramework.Domain.Builders.Abstractions.ICheckConstraintContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.ICheckConstraintContainerBuilder>.ToBuilder()
+        {
+            return ToBuilder();
+        }
+    }
+    public partial record Trigger : DatabaseFramework.Domain.Abstractions.IDatabaseObject, DatabaseFramework.Domain.Abstractions.ISchemaContainer, DatabaseFramework.Domain.Abstractions.INameContainer, DatabaseFramework.Domain.Abstractions.IStatementsContainer, CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.TriggerBuilder>
+    {
+        public DatabaseFramework.Domain.Domains.DatabaseOperation DatabaseOperation
+        {
+            get;
+        }
+
+        [System.ComponentModel.DataAnnotations.RequiredAttribute]
+        public string TableName
+        {
+            get;
+        }
+
+        [System.ComponentModel.DataAnnotations.RequiredAttribute]
+        [System.ComponentModel.DefaultValueAttribute(@"dbo")]
+        public string Schema
+        {
+            get;
+        }
+
+        [System.ComponentModel.DataAnnotations.RequiredAttribute]
+        public string Name
+        {
+            get;
+        }
+
+        [System.ComponentModel.DataAnnotations.RequiredAttribute]
+        [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
+        public System.Collections.Generic.IReadOnlyCollection<DatabaseFramework.Domain.SqlStatementBase> Statements
+        {
+            get;
+        }
+
+        public Trigger(DatabaseFramework.Domain.Domains.DatabaseOperation databaseOperation, string tableName, string schema, string name, System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.SqlStatementBase> statements)
+        {
+            this.DatabaseOperation = databaseOperation;
+            this.TableName = tableName;
+            this.Schema = schema;
+            this.Name = name;
+            this.Statements = statements is null ? null! : new CrossCutting.Common.ReadOnlyValueCollection<DatabaseFramework.Domain.SqlStatementBase>(statements);
+            System.ComponentModel.DataAnnotations.Validator.ValidateObject(this, new System.ComponentModel.DataAnnotations.ValidationContext(this, null, null), true);
+        }
+
+        public static implicit operator DatabaseFramework.Domain.Builders.TriggerBuilder(DatabaseFramework.Domain.Trigger entity)
+        {
+            return entity.ToBuilder();
+        }
+
+        public DatabaseFramework.Domain.Builders.TriggerBuilder ToBuilder()
+        {
+            return new DatabaseFramework.Domain.Builders.TriggerBuilder(this);
+        }
+
+        DatabaseFramework.Domain.Builders.Abstractions.IDatabaseObjectBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.IDatabaseObjectBuilder>.ToBuilder()
+        {
+            return ToBuilder();
+        }
+
+        DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.ISchemaContainerBuilder>.ToBuilder()
+        {
+            return ToBuilder();
+        }
+
+        DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.INameContainerBuilder>.ToBuilder()
+        {
+            return ToBuilder();
+        }
+
+        DatabaseFramework.Domain.Builders.Abstractions.IStatementsContainerBuilder CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.IStatementsContainerBuilder>.ToBuilder()
         {
             return ToBuilder();
         }

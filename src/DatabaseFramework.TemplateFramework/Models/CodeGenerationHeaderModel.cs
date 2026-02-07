@@ -12,6 +12,7 @@ public class CodeGenerationHeaderModel
         {
             Table => "Table",
             StoredProcedure => "Stored procedure",
+            Trigger => "Trigger",
             View => "View",
             ForeignKeyConstraint => "ForeignKey",
             _ => throw new NotSupportedException($"Unsupported database type: {databaseObject.GetType().FullName}")

@@ -105,5 +105,22 @@ namespace DatabaseFramework.Domain.Builders.Extensions
             return instance;
         }
     }
+    public static partial class StatementsContainerBuilderExtensions
+    {
+        public static T AddStatements<T>(this T instance, System.Collections.Generic.IEnumerable<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder> statements)
+            where T : DatabaseFramework.Domain.Builders.Abstractions.IStatementsContainerBuilder
+        {
+            if (statements is null) throw new System.ArgumentNullException(nameof(statements));
+            return instance.AddStatements<T>(statements.ToArray());
+        }
+
+        public static T AddStatements<T>(this T instance, params DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder[] statements)
+            where T : DatabaseFramework.Domain.Builders.Abstractions.IStatementsContainerBuilder
+        {
+            if (statements is null) throw new System.ArgumentNullException(nameof(statements));
+            foreach (var item in statements) instance.Statements.Add(item);
+            return instance;
+        }
+    }
 }
 #nullable disable

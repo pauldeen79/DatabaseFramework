@@ -80,5 +80,14 @@ namespace DatabaseFramework.Domain.Abstractions
             get;
         }
     }
+    public partial interface IStatementsContainer : CrossCutting.Common.Abstractions.IBuildableEntity<DatabaseFramework.Domain.Builders.Abstractions.IStatementsContainerBuilder>
+    {
+        [System.ComponentModel.DataAnnotations.RequiredAttribute]
+        [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
+        System.Collections.Generic.IReadOnlyCollection<DatabaseFramework.Domain.SqlStatementBase> Statements
+        {
+            get;
+        }
+    }
 }
 #nullable disable

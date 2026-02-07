@@ -90,5 +90,15 @@ namespace DatabaseFramework.Domain.Builders.Abstractions
             set;
         }
     }
+    public partial interface IStatementsContainerBuilder : CrossCutting.Common.Abstractions.IBuilder<DatabaseFramework.Domain.Abstractions.IStatementsContainer>
+    {
+        [System.ComponentModel.DataAnnotations.RequiredAttribute]
+        [CrossCutting.Common.DataAnnotations.ValidateObjectAttribute]
+        System.Collections.ObjectModel.ObservableCollection<DatabaseFramework.Domain.Builders.SqlStatementBaseBuilder> Statements
+        {
+            get;
+            set;
+        }
+    }
 }
 #nullable disable

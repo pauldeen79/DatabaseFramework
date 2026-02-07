@@ -21,6 +21,7 @@ public sealed class IntegrationTests : TestBase, IDisposable
             .AddScoped(_ => templateFactory)
             .AddScoped(_ => templateProviderPluginFactory)
             .AddScoped<TableCodeGenerationProvider>()
+            .AddScoped<TableWithTriggersCodeGenerationProvider>()
             .AddScoped<TablesCodeGenerationProvider>()
             .AddScoped<TableWithVarcharAndNumericFieldsCodeGenerationProvider>()
             .AddScoped<TableWithCheckConstraintsOnFieldLevelCodeGenerationProvider>()
@@ -65,6 +66,71 @@ CREATE TABLE [dbo].[MyTable](
 ) ON [PRIMARY]
 GO
 SET ANSI_PADDING OFF
+GO
+");
+    }
+
+    [Fact]
+    public async Task Can_Generate_Code_For_Table_With_Triggers()
+    {
+        // Arrange
+        var engine = _scope.ServiceProvider.GetRequiredService<ICodeGenerationEngine>();
+        var codeGenerationProvider = _scope.ServiceProvider.GetRequiredService<TableWithTriggersCodeGenerationProvider>();
+
+        // Act
+        var result = await engine.GenerateAsync(codeGenerationProvider, GenerationEnvironment, CodeGenerationSettings);
+
+        // Assert
+        result.Status.ShouldBe(ResultStatus.Ok);
+        GenerationEnvironment.Builder.Contents.ShouldHaveSingleItem();
+        GenerationEnvironment.Builder.Contents.First().Builder.ToString().ShouldBe(@"/****** Object:  Table [dbo].[MyTable] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[MyTable](
+	[MyField] VARCHAR(32) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Trigger [dbo].[trg_MyTable_delete] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TRIGGER [dbo].[trg_MyTable_delete] ON [MyTable] FOR DELETE
+AS
+BEGIN
+    --statement 1 goes here
+    --statement 2 goes here
+END
+GO
+/****** Object:  Trigger [dbo].[trg_MyTable_insert] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TRIGGER [dbo].[trg_MyTable_insert] ON [MyTable] FOR INSERT
+AS
+BEGIN
+    --statement 1 goes here
+    --statement 2 goes here
+END
+GO
+/****** Object:  Trigger [dbo].[trg_MyTable_update] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TRIGGER [dbo].[trg_MyTable_update] ON [MyTable] FOR UPDATE
+AS
+BEGIN
+    --statement 1 goes here
+    --statement 2 goes here
+END
 GO
 ");
     }
@@ -635,6 +701,50 @@ GO
                     .WithName("MyField")
                     .WithType(SqlFieldType.VarChar)
                     .WithStringLength(32))
+                .Build()
+        ]));
+    }
+
+    private sealed class TableWithTriggersCodeGenerationProvider : TestCodeGenerationProviderBase
+    {
+        public override Task<Result<IEnumerable<IDatabaseObject>>> GetModelAsync(CancellationToken token) => Task.FromResult(Result.Success<IEnumerable<IDatabaseObject>>(
+        [
+            new TableBuilder()
+                .WithName("MyTable")
+                .AddFields(new TableFieldBuilder()
+                    .WithName("MyField")
+                    .WithType(SqlFieldType.VarChar)
+                    .WithStringLength(32))
+                .Build(),
+            new TriggerBuilder()
+                .WithName("trg_MyTable_insert")
+                .WithTableName("MyTable")
+                .WithDatabaseOperation(DatabaseOperation.Insert)
+                .AddStatements
+                (
+                    new StringSqlStatementBuilder().WithStatement("--statement 1 goes here"),
+                    new StringSqlStatementBuilder().WithStatement("--statement 2 goes here")
+                )
+                .Build(),
+            new TriggerBuilder()
+                .WithName("trg_MyTable_update")
+                .WithTableName("MyTable")
+                .WithDatabaseOperation(DatabaseOperation.Update)
+                .AddStatements
+                (
+                    new StringSqlStatementBuilder().WithStatement("--statement 1 goes here"),
+                    new StringSqlStatementBuilder().WithStatement("--statement 2 goes here")
+                )
+                .Build(),
+            new TriggerBuilder()
+                .WithName("trg_MyTable_delete")
+                .WithTableName("MyTable")
+                .WithDatabaseOperation(DatabaseOperation.Delete)
+                .AddStatements
+                (
+                    new StringSqlStatementBuilder().WithStatement("--statement 1 goes here"),
+                    new StringSqlStatementBuilder().WithStatement("--statement 2 goes here")
+                )
                 .Build()
         ]));
     }

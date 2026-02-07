@@ -1,5 +1,5 @@
 ﻿namespace DatabaseFramework.CodeGeneration.Models.Domains;
 
-internal enum CascadeAction
+internal enum DatabaseOperation
 {
 }
