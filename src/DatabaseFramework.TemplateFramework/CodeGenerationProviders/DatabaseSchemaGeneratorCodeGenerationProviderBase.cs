@@ -22,11 +22,11 @@ public abstract class DatabaseSchemaGeneratorCodeGenerationProviderBase : ICodeG
         {
             return modelResult.TryCast<object?>();
         }
-        return Result.Success<object?>(new DatabaseSchemaGeneratorViewModel
+        return new DatabaseSchemaGeneratorViewModel
         {
             Model = modelResult.Value!,
             Settings = Settings
             //Context is filled in base class, on the property setter of Context (propagated to Model)
-        });
+        };
     }
 }
