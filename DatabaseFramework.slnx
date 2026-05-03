@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="src/DatabaseFramework.CodeGeneration/DatabaseFramework.CodeGeneration.csproj" />
+  <Project Path="src/DatabaseFramework.Domain.Tests/DatabaseFramework.Domain.Tests.csproj" />
+  <Project Path="src/DatabaseFramework.Domain/DatabaseFramework.Domain.csproj" />
+  <Project Path="src/DatabaseFramework.TemplateFramework.Tests/DatabaseFramework.TemplateFramework.Tests.csproj" />
+  <Project Path="src/DatabaseFramework.TemplateFramework/DatabaseFramework.TemplateFramework.csproj" />
+</Solution>
