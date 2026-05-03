@@ -30,11 +30,11 @@ jobs:
         with:
           dotnet-version: 10.0.x
       - name: Restore
-        run: dotnet restore DatabaseFramework.sln
+        run: dotnet restore
       - name: Build
-        run: dotnet build DatabaseFramework.sln -c Release --no-restore
+        run: dotnet build -c Release --no-restore
       - name: Test
-        run: dotnet test DatabaseFramework.sln -c Release --no-restore
+        run: dotnet test -c Release --no-restore
       - name: Checking for external vulnerabilities
         run: |
           dotnet list ${{ github.workspace }}/DatabaseFramework.sln package --vulnerable --include-transitive 2>&1 | tee vuln.log
@@ -83,7 +83,7 @@ jobs:
           echo Version: $VERSION
           VERSION="${VERSION//v}"
           echo Clean Version: $VERSION
-          dotnet pack DatabaseFramework.sln -v normal -c Release --include-symbols --include-source -p:PackageVersion=$VERSION -p:Version=$VERSION -o nupkg
+          dotnet pack -v normal -c Release --include-symbols --include-source -p:PackageVersion=$VERSION -p:Version=$VERSION -o nupkg
       - name: Push to GitHub Feed
         run: |
           for f in ./nupkg/*.nupkg
